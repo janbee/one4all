@@ -24542,7 +24542,7 @@ const Webview = reactExports.memo(function Webview2({
         ref: webviewRef,
         id: `PlayAbWebView-${account}`,
         partition: `persist:${account.toLowerCase()}`,
-        src: `https://playalberta.ca/sports/live?&account=${account}`,
+        src: `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
         preload: `file://${window.__preload}/play-ab.js`
       }
     ) })
