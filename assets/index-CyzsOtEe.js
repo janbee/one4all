@@ -10363,8 +10363,8 @@ Suggested solution: ${env.workaround}`;
     }
   }
 }
-const version$4 = "2.15.5";
-const DEFAULT_VERSION = `realtime-js/${version$4}`;
+const version$5 = "2.15.5";
+const DEFAULT_VERSION = `realtime-js/${version$5}`;
 const VSN = "1.0.0";
 const DEFAULT_TIMEOUT = 1e4;
 const WS_CLOSE_NORMAL = 1e3;
@@ -12964,8 +12964,8 @@ class StorageFileApi {
     return params.join("&");
   }
 }
-const version$3 = "2.12.2";
-const DEFAULT_HEADERS$2 = { "X-Client-Info": `storage-js/${version$3}` };
+const version$4 = "2.12.2";
+const DEFAULT_HEADERS$2 = { "X-Client-Info": `storage-js/${version$4}` };
 var __awaiter$3 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -13185,7 +13185,7 @@ class StorageClient extends StorageBucketApi {
     return new StorageFileApi(this.url, this.headers, id, this.fetch);
   }
 }
-const version$2 = "2.58.0";
+const version$3 = "2.58.0";
 let JS_ENV = "";
 if (typeof Deno !== "undefined") {
   JS_ENV = "deno";
@@ -13196,7 +13196,7 @@ if (typeof Deno !== "undefined") {
 } else {
   JS_ENV = "node";
 }
-const DEFAULT_HEADERS$1 = { "X-Client-Info": `supabase-js-${JS_ENV}/${version$2}` };
+const DEFAULT_HEADERS$1 = { "X-Client-Info": `supabase-js-${JS_ENV}/${version$3}` };
 const DEFAULT_GLOBAL_OPTIONS = {
   headers: DEFAULT_HEADERS$1
 };
@@ -13335,13 +13335,13 @@ function validateSupabaseUrl(supabaseUrl2) {
     throw Error("Invalid supabaseUrl: Provided URL is malformed.");
   }
 }
-const version$1 = "2.72.0";
+const version$2 = "2.72.0";
 const AUTO_REFRESH_TICK_DURATION_MS = 30 * 1e3;
 const AUTO_REFRESH_TICK_THRESHOLD = 3;
 const EXPIRY_MARGIN_MS = AUTO_REFRESH_TICK_THRESHOLD * AUTO_REFRESH_TICK_DURATION_MS;
 const GOTRUE_URL = "http://localhost:9999";
 const STORAGE_KEY = "supabase.auth.token";
-const DEFAULT_HEADERS = { "X-Client-Info": `gotrue-js/${version$1}` };
+const DEFAULT_HEADERS = { "X-Client-Info": `gotrue-js/${version$2}` };
 const API_VERSION_HEADER_NAME = "X-Supabase-Api-Version";
 const API_VERSIONS = {
   "2024-01-01": {
@@ -14586,7 +14586,7 @@ class GoTrueClient {
   }
   _debug(...args) {
     if (this.logDebugMessages) {
-      this.logger(`GoTrueClient@${this.instanceID} (${version$1}) ${(/* @__PURE__ */ new Date()).toISOString()}`, ...args);
+      this.logger(`GoTrueClient@${this.instanceID} (${version$2}) ${(/* @__PURE__ */ new Date()).toISOString()}`, ...args);
     }
     return this;
   }
@@ -18397,7 +18397,7 @@ const data = {
   ROMMI,
   ELLA
 };
-const version = "0.0.552";
+const version$1 = "0.0.552";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(relativeTime);
@@ -18632,7 +18632,7 @@ let StoreService$1 = class StoreService {
     this.weeklySummary$ = new BehaviorSubject(
       void 0
     );
-    this.version$ = new BehaviorSubject(version);
+    this.version$ = new BehaviorSubject(version$1);
   }
 };
 new StoreService$1();
@@ -24353,10 +24353,10 @@ function useWebview(account) {
         await delay(2500);
         if (isTerminatedRef.current) return false;
         let JsString = JSString;
-        let currentVersion = version;
+        let currentVersion = version$1;
         let allAccounts = accounts;
         if (playAbFromGH) {
-          const ghRawJsString = getPlayJsExtracts(playAbFromGH, version);
+          const ghRawJsString = getPlayJsExtracts(playAbFromGH, version$1);
           const { ghVersionString, ghVersionNumber, localVersionNumber, ghAccounts } = ghRawJsString;
           $Store.actionStatus$[account].next({
             Action: "PlayAbFromGH Version",
@@ -26768,10 +26768,11 @@ function Main() {
     ] })
   ] });
 }
+const version = "1.0.3";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
-    document.title = "One4All - Home";
+    document.title = `One4All ${version}`;
     const loginSubscription = SharedApiSupabase.login("talpaklogen@gmail.com").pipe(delay$1(500)).subscribe(() => {
       setAppReady(true);
     });
