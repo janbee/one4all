@@ -26771,6 +26771,7 @@ function Main() {
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
+    document.title = "One4All - Home";
     const loginSubscription = SharedApiSupabase.login("talpaklogen@gmail.com").pipe(delay$1(500)).subscribe(() => {
       setAppReady(true);
     });
