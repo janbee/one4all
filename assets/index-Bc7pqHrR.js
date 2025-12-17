@@ -26768,11 +26768,11 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.3";
+const version = "1.0.4";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
-    document.title = `One4All ${version}`;
+    document.title = `One4All - v${version}`;
     const loginSubscription = SharedApiSupabase.login("talpaklogen@gmail.com").pipe(delay$1(500)).subscribe(() => {
       setAppReady(true);
     });
