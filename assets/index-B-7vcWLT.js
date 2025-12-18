@@ -24509,6 +24509,7 @@ function useWebview(account) {
   const handleReload = reactExports.useCallback(() => {
     handleWebviewDestroy(webviewId).then(() => {
       setReload(true);
+      $Store.userSession$[account].next(void 0);
       setTimeout(() => {
         setReload(false);
       }, 1e3);
@@ -26579,8 +26580,8 @@ function Logs({ user, onShowLogs }) {
       className: classNames({
         "hover:bg-gray-900 cursor-pointer": !!info.Action
       }),
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 overflow-y-auto space-y-0.5 text-[10px] font-mono", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-row gap-2 items-center", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-400 flex-1 truncate", children: info.Action }),
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 space-y-0.5 text-[10px] truncate", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-row gap-2 items-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-400 flex-1", children: info.Action }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-yellow-400 whitespace-nowrap", children: info.Status })
       ] }) })
     }
@@ -26711,10 +26712,23 @@ function LastLogin({ user }) {
   const lastUpdate$ = dayjs(lastUpdate).tz("America/Denver");
   const hoursPassed = dayjs.duration(-lastUpdate$.diff(Date.now())).asHours();
   const bgColor = getColor(hoursPassed, 7);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:flex-1", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { color: bgColor }, children: [
-    userSession?.GPD?.lastLogin && getMTDates().fromNow(convertToMT(lastUpdate)),
-    " "
-  ] }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { className: classNames("relative"), textAlign: "center", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: classNames(
+          "absolute border-t-transparent top-0 left-0 w-0 h-0 border-r-[7px] border-r-transparent border-b-[0] border-b-transparent border-l-[0] border-l-transparent [.selected_&]:border-t-[7px] [.selected_&]:border-t-yellow-400",
+          {
+            "[.selected_&]:border-t-green-400": userSession?.GPD?.lastLogin
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { color: bgColor }, children: [
+      userSession?.GPD?.lastLogin && getMTDates().fromNow(convertToMT(lastUpdate)),
+      " "
+    ] })
+  ] });
 }
 function Main() {
   const {
@@ -26811,7 +26825,7 @@ function Main() {
               TableRow,
               {
                 className: classNames("hover:bg-gray-800/50 transition-colors duration-150", {
-                  "!bg-green-600/30": selected
+                  "selected group": selected
                 }),
                 onClick: () => !selected ? handleUserClick(user) : handleScrollToUser(user),
                 children: tableCols.map(({ render, isVisible }, index2) => {
@@ -26833,7 +26847,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.6";
+const version = "1.0.7";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
