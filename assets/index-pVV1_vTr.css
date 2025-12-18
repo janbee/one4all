@@ -536,6 +536,9 @@ video {
 .h-screen {
   height: 100vh;
 }
+.w-\[105px\] {
+  width: 105px;
+}
 .w-\[110px\] {
   width: 110px;
 }
