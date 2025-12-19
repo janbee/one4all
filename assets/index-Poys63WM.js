@@ -24355,6 +24355,7 @@ const $Store = new StoreService2();
 function useWebview(account) {
   const webviewRef = reactExports.useRef(null);
   const isTerminatedRef = reactExports.useRef(false);
+  const [isDone, setIsDone] = reactExports.useState(false);
   const [webviewId, setWebviewId] = reactExports.useState(0);
   const [reload, setReload] = reactExports.useState(false);
   const debouncedMethod = reactExports.useMemo(
@@ -24392,6 +24393,7 @@ function useWebview(account) {
           return;
         }
         lastRun = now;
+        setIsDone(false);
         isTerminatedRef.current = false;
         const webContentsId = webview.getWebContentsId();
         setWebviewId(webContentsId);
@@ -24462,6 +24464,9 @@ function useWebview(account) {
         const weeklySummary = user?.data.weeklySummary?.find(
           (item) => item.data.weekStart === weekStart.toISOString()
         );
+        if (weeklySummary?.data.done && weeklySummary.data.openBets === 0) {
+          setIsDone(true);
+        }
         $Store.weeklySummary$[account].next(weeklySummary);
         const globalObject2 = JSON.stringify({
           account,
@@ -24546,20 +24551,24 @@ function useWebview(account) {
     reload,
     account,
     handleWebviewDestroy,
-    webviewId
+    webviewId,
+    isDone
   };
 }
 const Webview = reactExports.memo(function Webview2({
   account,
   onDelete
 }) {
-  const { webviewRef, reload, handleWebviewDestroy, webviewId } = useWebview(account);
+  const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account);
   const handleDelete = reactExports.useCallback(async () => {
     if (onDelete) {
       await handleWebviewDestroy(webviewId);
       onDelete(account);
     }
   }, [account, onDelete, webviewId]);
+  if (isDone) {
+    onDelete(account);
+  }
   console.log(
     "Webview partition-------------------------------------",
     `partition=persist:${account}`
@@ -26845,7 +26854,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.16";
+const version = "1.0.17";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
