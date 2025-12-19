@@ -24649,9 +24649,6 @@ function useFullLogs(account) {
 function FullLogs({ account, onClose }) {
   const { logs } = useFullLogs(account);
   const logsEndRef = reactExports.useRef(null);
-  reactExports.useEffect(() => {
-    logsEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [logs]);
   const latestLog = logs[logs.length - 1];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col h-full bg-gray-950 text-white w-[400px]", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between px-2 py-1.5 !h-8 bg-gray-900 shadow-[0_1px_0_#374151]", children: [
@@ -26858,7 +26855,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.18";
+const version = "1.0.19";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
