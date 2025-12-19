@@ -18304,7 +18304,7 @@ function useMain$1() {
     setError(null);
     return SharedApiSupabase.getUsers().subscribe({
       next: (res) => {
-        setUsers((res.data ?? []).sort((a, b) => b.data.build.localeCompare(a.data.build)).reverse());
+        setUsers((res.data ?? []).sort((a, b) => b.data.build.localeCompare(a.data.build)).reverse().filter((item) => item.data.build === "KIM"));
         setLoading(false);
       },
       error: (err) => {
@@ -18368,7 +18368,7 @@ const RAF = ["raf.mahal@yahoo.com", "Admin123!@#", { "cashoutEmail": "thebetlogs
 const ARIEL = ["ariel.berdugo@yahoo.com", "Admin123!@#", { "cashoutEmail": "thebetlogs@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "b761f76a-297e-45dc-922f-6a27c37dacc4", ["talpakers-7", "gaga123123"]];
 const CABDI = ["cabdi.shakuur@janbeeangel.es", "Admin123!@#", { "cashoutEmail": "thebetlogs@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "2a056dc3-e496-4c14-9bb9-fdfcae8187ad", ["talpakers-7", "gaga123123"]];
 const MERS = ["merciesguerra.gzz314@bumpmail.io", "Admin123!@#", { "cashoutEmail": "mercyreyesesguerra@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "88a4372f-324d-4e4a-ba18-da29ac2c101b", ["talpakers-8", "gaga123123"]];
-const JOSE = ["jasoncandelaria1977@gmail.com", "Admin123!@#", { "cashoutEmail": "ceejramos@yahoo.com", "maintainCash": 100, "fixedAmount": 100 }, "0f948637-1694-4866-aca3-926dfec2657f", ["talpakers-8", "gaga123123"]];
+const JOSE = ["jasoncandelaria1977@gmail.com", "Admin123!@#", { "cashoutEmail": "talpaklogen@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "0f948637-1694-4866-aca3-926dfec2657f", ["talpakers-8", "gaga123123"]];
 const TACIO = ["ajanarcon3rd07@gmail.com", "maLmon3rd07a", { "cashoutEmail": "ajanarcon3rd07@gmail.com", "maintainCash": 100, "fixedAmount": 200 }, "20e9ca5b-4952-4101-9224-31b795e17c35", ["talpakers-8", "gaga123123"]];
 const LOURISSE = ["lourissedeguzman@gmail.com", "Lourissedg616", { "cashoutEmail": "lourissedeguzman@gmail.com", "maintainCash": 100, "fixedAmount": 200 }, "8e31f956-1456-4353-a062-eee7d8643ff2", ["talpakers-8", "gaga123123"]];
 const TIN = ["cmkristine03@gmail.com", "October$03", { "cashoutEmail": "cmkristine03@gmail.com", "maintainCash": 100, "fixedAmount": 200 }, "10ebfd05-f21a-4823-927b-f9bf6f16b31c", ["talpakers-8", "gaga123123"]];
@@ -24382,7 +24382,15 @@ function useWebview(account) {
       webview.addEventListener("did-fail-load", (errorEvent) => {
         console.error("WebView Load Failed:", errorEvent.errorDescription, errorEvent.errorCode);
       });
+      let lastRun = 0;
+      const THROTTLE_MS = 5e3;
       webview.addEventListener("dom-ready", async () => {
+        const now = Date.now();
+        if (now - lastRun < THROTTLE_MS) {
+          console.log("dom-ready throttled");
+          return;
+        }
+        lastRun = now;
         isTerminatedRef.current = false;
         const webContentsId = webview.getWebContentsId();
         setWebviewId(webContentsId);
@@ -26543,16 +26551,19 @@ function useLogs(account) {
   });
   reactExports.useEffect(() => {
     const ipcHandler = (_, { data: data2 }) => {
+      console.log("gaga--------------------ipcHandler-----------------");
       setInfo(data2);
       const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
       $Logs.add(account, { ...data2, timestamp });
     };
     const rxHandler = (data2) => {
+      console.log("gaga--------------------rxHandler-----------------", data2);
       setInfo(data2);
       const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
       $Logs.add(account, { ...data2, timestamp });
     };
     const removeIpcListener = window.electron.ipcRenderer.on(`actionStatus$-${account}`, ipcHandler);
+    console.log("gaga-------------------------------$Store.actionStatus$[account].subscribe------");
     const subscription = $Store.actionStatus$[account].subscribe(rxHandler);
     return () => {
       if (typeof removeIpcListener === "function") {
@@ -26836,7 +26847,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.9";
+const version = "1.0.10";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
