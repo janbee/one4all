@@ -18382,6 +18382,7 @@ const GEM = ["remma@albertabet.online", "Admin123!@#", { "cashoutEmail": "Aldrin
 const LOU = ["malou@albertabet.online", "Admin123!@#", null, "ba8f017b-5b97-4700-9232-99cf532e9329", ["talpakers-10", "gaga123123"]];
 const ROMMI = ["rommi@albertabet.online", "Admin123!@#", { "cashoutEmail": "morriscandelaria459@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "60d96e03-5ac8-41eb-909b-62a68f46ae09", ["talpakers-10", "gaga123123"]];
 const ELLA = ["ella@albertabet.online", "Admin123!@#", null, "37d9f3c8-e94e-46de-a533-4c1a4cbb8f4d", ["talpakers-11", "gaga123123"]];
+const KIM = ["kim.villafloor@albertabet.online", "Admin123!@#", null, "eac08f70-e353-4878-9c1d-05932632c8ab", ["talpakers-11", "gaga123123"]];
 const data = {
   JERO,
   ANNIE,
@@ -18432,7 +18433,8 @@ const data = {
   GEM,
   LOU,
   ROMMI,
-  ELLA
+  ELLA,
+  KIM
 };
 const version$1 = "0.0.553";
 dayjs.extend(utc);
@@ -26834,7 +26836,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.8";
+const version = "1.0.9";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
