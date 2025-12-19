@@ -24468,9 +24468,6 @@ function useWebview(account) {
         const weeklySummary = user?.data.weeklySummary?.find(
           (item) => item.data.weekStart === weekStart.toISOString()
         );
-        if (weeklySummary?.data.done && weeklySummary.data.openBets === 0) {
-          setIsDone(true);
-        }
         $Store.weeklySummary$[account].next(weeklySummary);
         const globalObject2 = JSON.stringify({
           account,
@@ -24540,6 +24537,12 @@ function useWebview(account) {
       debouncedMethod();
       if (data2.Status === "reload$") {
         handleReload();
+      }
+      if (data2.Status === "weeklySummary$") {
+        const weeklySummary = data2.data;
+        if (weeklySummary.data.done && weeklySummary.data.openBets === 0) {
+          setIsDone(true);
+        }
       }
     };
     const removeIpcListener = window.electron.ipcRenderer.on(`actionStatus$-${account}`, ipcHandler);
@@ -26857,7 +26860,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.21";
+const version = "1.0.22";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
