@@ -26712,23 +26712,10 @@ function LastLogin({ user }) {
   const lastUpdate$ = dayjs(lastUpdate).tz("America/Denver");
   const hoursPassed = dayjs.duration(-lastUpdate$.diff(Date.now())).asHours();
   const bgColor = getColor(hoursPassed, 7);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { className: classNames("relative"), textAlign: "center", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: classNames(
-          "absolute border-t-transparent top-0 left-0 w-0 h-0 border-r-[7px] border-r-transparent border-b-[0] border-b-transparent border-l-[0] border-l-transparent [.selected_&]:border-t-[7px] [.selected_&]:border-t-yellow-400",
-          {
-            "[.selected_&]:border-t-green-400": userSession?.GPD?.lastLogin
-          }
-        )
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { color: bgColor }, children: [
-      userSession?.GPD?.lastLogin && getMTDates().fromNow(convertToMT(lastUpdate)),
-      " "
-    ] })
-  ] });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: classNames("relative"), textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { color: bgColor }, children: [
+    userSession?.GPD?.lastLogin && getMTDates().fromNow(convertToMT(lastUpdate)),
+    " "
+  ] }) });
 }
 function Main() {
   const {
@@ -26847,7 +26834,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.7";
+const version = "1.0.8";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
