@@ -18304,7 +18304,7 @@ function useMain$1() {
     setError(null);
     return SharedApiSupabase.getUsers().subscribe({
       next: (res) => {
-        setUsers((res.data ?? []).sort((a, b) => b.data.build.localeCompare(a.data.build)).reverse().filter((item) => item.data.build === "KIM"));
+        setUsers((res.data ?? []).sort((a, b) => b.data.build.localeCompare(a.data.build)).reverse());
         setLoading(false);
       },
       error: (err) => {
@@ -26551,19 +26551,16 @@ function useLogs(account) {
   });
   reactExports.useEffect(() => {
     const ipcHandler = (_, { data: data2 }) => {
-      console.log("gaga--------------------ipcHandler-----------------");
       setInfo(data2);
       const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
       $Logs.add(account, { ...data2, timestamp });
     };
     const rxHandler = (data2) => {
-      console.log("gaga--------------------rxHandler-----------------", data2);
       setInfo(data2);
       const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
       $Logs.add(account, { ...data2, timestamp });
     };
     const removeIpcListener = window.electron.ipcRenderer.on(`actionStatus$-${account}`, ipcHandler);
-    console.log("gaga-------------------------------$Store.actionStatus$[account].subscribe------");
     const subscription = $Store.actionStatus$[account].subscribe(rxHandler);
     return () => {
       if (typeof removeIpcListener === "function") {
@@ -26847,7 +26844,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.10";
+const version = "1.0.11";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
