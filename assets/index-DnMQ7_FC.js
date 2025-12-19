@@ -18614,16 +18614,17 @@ const getPlayJsExtracts = (ghJsString, localVersionString) => {
   const ghVersionString = match?.[1] || match2?.[1] || "0";
   const ghVersionNumber = Number(ghVersionString.split(".").join(""));
   const localVersionNumber = Number(localVersionString.split(".").join(""));
-  const matchAccounts = ghJsString.match(/JSON\.parse\('([^']*)'\)/);
-  let ghAccounts = null;
-  if (matchAccounts && matchAccounts[1]) {
-    const extractedJsonString = matchAccounts[1];
-    try {
-      ghAccounts = JSON.parse(extractedJsonString);
-    } catch (e) {
-      console.error("Failed to parse accounts JSON from GitHub string", e);
+  const ghAccounts = (() => {
+    for (const [, jsonStr] of ghJsString.matchAll(
+      /JSON\.parse\('([\s\S]*?)'\)/g
+    )) {
+      if (jsonStr.includes('"JERO"')) {
+        const start = jsonStr.lastIndexOf("{", jsonStr.indexOf('"JERO"'));
+        return JSON.parse(jsonStr.substring(start));
+      }
     }
-  }
+    return null;
+  })();
   return {
     ghVersionNumber,
     ghVersionString,
@@ -24451,7 +24452,7 @@ function useWebview(account) {
         const res = await lastValueFrom(SharedApiSupabase.getUsersWithWeeklySummary(email));
         if (isTerminatedRef.current) return false;
         const user = res.data?.[0];
-        const hasProxy = await window.api.setProxy(webContentsId, account);
+        const hasProxy = await window.api.setProxy(webContentsId, allAccounts, account);
         if (isTerminatedRef.current) return false;
         if (!hasProxy) {
           handleReload();
@@ -26844,7 +26845,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.11";
+const version = "1.0.16";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
