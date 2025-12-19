@@ -24424,6 +24424,10 @@ function useWebview(account) {
             allAccounts = ghAccountsCount >= localAccountsCount ? ghAccounts : accounts;
             JsString = playAbFromGH;
             currentVersion = ghVersionString;
+            $Store.actionStatus$[account].next({
+              Action: "AllAccounts",
+              Status: `is coming from ${ghAccountsCount >= localAccountsCount ? "GH ACCOUNTS" : "LOCAL ACCOUNTS"}`
+            });
           }
         }
         if (isTerminatedRef.current) return false;
@@ -26854,7 +26858,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.17";
+const version = "1.0.18";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
