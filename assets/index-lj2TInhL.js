@@ -24486,9 +24486,9 @@ function useWebview(account) {
           inter = setInterval(() => {
             $Store.actionStatus$[account].next({
               Action: res.error?.details,
-              Status: remaining.s--
+              Status: `Countdown ${remaining.s--}`
             });
-          }, remaining.ms);
+          }, 1e3);
           $Store.actionStatus$[account].next({
             Action: res.error?.details,
             Status: `${res.error?.hint}`
@@ -26905,7 +26905,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.39";
+const version = "1.0.40";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
