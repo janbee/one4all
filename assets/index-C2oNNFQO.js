@@ -18259,19 +18259,25 @@ function useMain$1() {
       setSelectedUserBuilds(builds);
     }
   }, []);
-  const isUserSelected = reactExports.useCallback((userBuild) => {
-    return selectedUserBuilds.has(userBuild);
-  }, [selectedUserBuilds]);
-  const handleUserClick = reactExports.useCallback((user) => {
-    if (isUserSelected(user.data.build)) {
-      return;
-    }
-    const existingData = localStorage.getItem("selectedUsers");
-    const usersArray = existingData ? JSON.parse(existingData) : [];
-    usersArray.push(user);
-    localStorage.setItem("selectedUsers", JSON.stringify(usersArray));
-    setSelectedUserBuilds((prev) => /* @__PURE__ */ new Set([...prev, user.data.build]));
-  }, [isUserSelected]);
+  const isUserSelected = reactExports.useCallback(
+    (userBuild) => {
+      return selectedUserBuilds.has(userBuild);
+    },
+    [selectedUserBuilds]
+  );
+  const handleUserClick = reactExports.useCallback(
+    (user) => {
+      if (isUserSelected(user.data.build)) {
+        return;
+      }
+      const existingData = localStorage.getItem("selectedUsers");
+      const usersArray = existingData ? JSON.parse(existingData) : [];
+      usersArray.push(user);
+      localStorage.setItem("selectedUsers", JSON.stringify(usersArray));
+      setSelectedUserBuilds((prev) => /* @__PURE__ */ new Set([...prev, user.data.build]));
+    },
+    [isUserSelected]
+  );
   const handleScrollToUser = reactExports.useCallback((user) => {
     const element = document.getElementById(`PlayAbWebView-${user.data.build}`);
     if (!element) return;
@@ -18304,7 +18310,19 @@ function useMain$1() {
     setError(null);
     return SharedApiSupabase.getUsers().subscribe({
       next: (res) => {
-        setUsers((res.data ?? []).sort((a, b) => b.data.build.localeCompare(a.data.build)).reverse());
+        const sortedUsers = (res.data ?? []).sort((a, b) => b.data.build.localeCompare(a.data.build)).reverse();
+        sortedUsers.filter((user) => {
+          const lastLogin = user.data.userSession?.GPD?.lastLogin;
+          if (lastLogin) {
+            const lastUpdate = new Date(lastLogin);
+            const lastUpdate$ = dayjs(lastUpdate).tz("America/Denver");
+            const hoursPassed = dayjs.duration(-lastUpdate$.diff(Date.now())).asHours();
+            if (hoursPassed > 24) {
+              handleUserClick(user);
+            }
+          }
+        });
+        setUsers(sortedUsers);
         setLoading(false);
       },
       error: (err) => {
@@ -18383,6 +18401,7 @@ const LOU = ["malou@albertabet.online", "Admin123!@#", null, "ba8f017b-5b97-4700
 const ROMMI = ["rommi@albertabet.online", "Admin123!@#", { "cashoutEmail": "morriscandelaria459@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "60d96e03-5ac8-41eb-909b-62a68f46ae09", ["talpakers-10", "gaga123123"]];
 const ELLA = ["ella@albertabet.online", "Admin123!@#", null, "37d9f3c8-e94e-46de-a533-4c1a4cbb8f4d", ["talpakers-11", "gaga123123"]];
 const KIM = ["kim.villafloor@albertabet.online", "Admin123!@#", null, "eac08f70-e353-4878-9c1d-05932632c8ab", ["talpakers-11", "gaga123123"]];
+const JAY = ["jay.villafloor@albertabet.online", "Admin123!@#", null, "fec0ab40-2a91-483f-8a52-2af7c383b37f", ["talpakers-11", "gaga123123"]];
 const data = {
   JERO,
   ANNIE,
@@ -18434,7 +18453,8 @@ const data = {
   LOU,
   ROMMI,
   ELLA,
-  KIM
+  KIM,
+  JAY
 };
 const version$1 = "0.0.554";
 dayjs.extend(utc);
@@ -26860,7 +26880,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.23";
+const version = "1.0.31";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
