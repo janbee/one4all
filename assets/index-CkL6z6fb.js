@@ -24397,6 +24397,7 @@ function useWebview(account) {
   );
   reactExports.useEffect(() => {
     const webview = webviewRef.current;
+    let inter = null;
     if (webview) {
       webview.addEventListener("context-menu", (event) => {
         webview.openDevTools();
@@ -24481,10 +24482,18 @@ function useWebview(account) {
         if (isTerminatedRef.current) return false;
         const user = res.data?.[0];
         if (!user) {
+          const remaining = JSON.parse(res.error?.hint ?? "{}");
+          inter = setInterval(() => {
+            $Store.actionStatus$[account].next({
+              Action: res.error?.details,
+              Status: remaining.s--
+            });
+          }, remaining.ms);
           $Store.actionStatus$[account].next({
             Action: res.error?.details,
             Status: `${res.error?.hint}`
           });
+          await delay(remaining.ms);
           handleReload();
           return false;
         }
@@ -24549,6 +24558,9 @@ function useWebview(account) {
       });
     }
     return () => {
+      if (inter) {
+        clearInterval(inter);
+      }
       isTerminatedRef.current = true;
       debouncedMethod?.cancel();
     };
@@ -26786,10 +26798,6 @@ function Main() {
     handleScrollToUser
   } = useMain$1();
   const [showLogsOnAccount, setShowLogs] = reactExports.useState("");
-  const appReLaunch = reactExports.useCallback(() => {
-    alert(1);
-    window.api.appReLaunch();
-  }, []);
   const tableCols = [
     {
       name: /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: "AppBuild" }),
@@ -26854,28 +26862,21 @@ function Main() {
         unstackable: true,
         className: "w-full table-fixed",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            TableHeader,
-            {
-              className: "bg-neutral-900 sticky top-0 z-10 shadow-[0_1px_0_#374151]",
-              onClick: () => appReLaunch(),
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: tableCols.map(
-                ({ name, className, isVisible }, index2) => isVisible === false ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  TableHeaderCell,
-                  {
-                    textAlign: "center",
-                    className: classNames(
-                      "tracking-tighter font-medium text-gray-300 uppercase text-[10px]",
-                      "py-1.5 !h-8",
-                      className
-                    ),
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block leading-none", children: name })
-                  },
-                  index2
-                )
-              ) })
-            }
-          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { className: "bg-neutral-900 sticky top-0 z-10 shadow-[0_1px_0_#374151]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: tableCols.map(
+            ({ name, className, isVisible }, index2) => isVisible === false ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(
+              TableHeaderCell,
+              {
+                textAlign: "center",
+                className: classNames(
+                  "tracking-tighter font-medium text-gray-300 uppercase text-[10px]",
+                  "py-1.5 !h-8",
+                  className
+                ),
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block leading-none", children: name })
+              },
+              index2
+            )
+          ) }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { className: "divide-y divide-gray-800 text-[10px]", children: users.map((user) => {
             const selected = isUserSelected(user.data.build);
             return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -26904,7 +26905,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.38";
+const version = "1.0.39";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
