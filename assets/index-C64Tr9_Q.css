@@ -878,6 +878,31 @@ body {
   width: 100%;
 }
 
+#root tr td:last-child::after{
+    content: '';
+    position: absolute;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+  }
+
+#root tr.selected td:last-child::after {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 189 8 / var(--tw-bg-opacity));
+}
+
+#root tr:has(td.terminated) td:last-child::after {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 95 95 / var(--tw-bg-opacity)) !important;
+}
+
+#root tr:has(td.last-login) td:last-child::after {
+  --tw-bg-opacity: 1;
+  background-color: rgb(172 255 46 / var(--tw-bg-opacity));
+}
+
 #root td .ui.progress {
       margin-bottom: 0 !important;
     }
