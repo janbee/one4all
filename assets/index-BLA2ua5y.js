@@ -18246,7 +18246,7 @@ const getColor = (value, max) => {
   const index2 = Math.floor(clampedHours / max * (colorArr.length - 1));
   return colorArr[index2];
 };
-function useMain$1() {
+function useMain() {
   const [users, setUsers] = reactExports.useState([]);
   const [loading, setLoading] = reactExports.useState(false);
   const [error, setError] = reactExports.useState(null);
@@ -18401,6 +18401,7 @@ const LOU = ["malou@albertabet.online", "Admin123!@#", null, "ba8f017b-5b97-4700
 const ROMMI = ["rommi@albertabet.online", "Admin123!@#", { "cashoutEmail": "morriscandelaria459@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "60d96e03-5ac8-41eb-909b-62a68f46ae09", ["talpakers-10", "gaga123123"]];
 const ELLA = ["ella@albertabet.online", "Admin123!@#", null, "37d9f3c8-e94e-46de-a533-4c1a4cbb8f4d", ["talpakers-11", "gaga123123"]];
 const KIM = ["kim.villafloor@albertabet.online", "Admin123!@#", null, "eac08f70-e353-4878-9c1d-05932632c8ab", ["talpakers-11", "gaga123123"]];
+const MARY = ["marydetecio@yahoo.com", "RedPepper@24", null, "cd25a32e-27bb-4a70-ac95-5da390720fac", ["talpakers-11", "gaga123123"]];
 const JAY = ["jay.villafloor@albertabet.online", "Admin123!@#", null, "fec0ab40-2a91-483f-8a52-2af7c383b37f", ["talpakers-11", "gaga123123"]];
 const data = {
   JERO,
@@ -18454,6 +18455,7 @@ const data = {
   ROMMI,
   ELLA,
   KIM,
+  MARY,
   JAY
 };
 const version$1 = "0.0.560";
@@ -26665,7 +26667,7 @@ const observableTypes = {
   // balance$: null as unknown as number | undefined,
   // recentBets$: null as unknown as Bet[] | undefined,
 };
-function useMain(account) {
+function useMainStore(account) {
   const [data2, setData] = reactExports.useState({});
   reactExports.useEffect(() => {
     const cleanup = [];
@@ -26677,6 +26679,7 @@ function useMain(account) {
           setData((prev) => ({ ...prev, [key]: data22 }));
         }
       );
+      console.log("account-------------------------------------", obsKey, account);
       const sub = $Store[obsKey][account].subscribe((value) => {
         setData((prev) => ({ ...prev, [key]: value }));
       });
@@ -26687,7 +26690,7 @@ function useMain(account) {
   return data2;
 }
 function WeeklySummary({ user }) {
-  const { weeklySummary } = useMain(user.data.build);
+  const { weeklySummary } = useMainStore(user.data.build);
   const totalEarnings = weeklySummary?.data.totalEarnings || 0;
   const winnings = weeklySummary?.data.winnings || 0;
   const bonus = weeklySummary?.data.potentialBonus || 0;
@@ -26748,7 +26751,7 @@ function Countdown({ user }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:flex-1", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: countdown }) });
 }
 function WeeklyProgress({ user }) {
-  const { weeklySummary } = useMain(user.data.build);
+  const { weeklySummary } = useMainStore(user.data.build);
   const totalStaked = weeklySummary?.data.totalStaked || 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:w-full", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
     Progress,
@@ -26764,7 +26767,7 @@ function WeeklyProgress({ user }) {
   ) });
 }
 function Bets({ user }) {
-  const { weeklySummary } = useMain(user.data.build);
+  const { weeklySummary } = useMainStore(user.data.build);
   const bets = {
     open: weeklySummary?.data.openBets ?? 0,
     settled: weeklySummary?.data.settledBets ?? 0
@@ -26778,7 +26781,7 @@ function Bets({ user }) {
   }) });
 }
 function LastLogin({ user }) {
-  const { userSession } = useMain(user.data.build);
+  const { userSession } = useMainStore(user.data.build);
   const lastUpdate = new Date(userSession?.GPD?.lastLogin || /* @__PURE__ */ new Date());
   const lastUpdate$ = dayjs(lastUpdate).tz("America/Denver");
   const hoursPassed = dayjs.duration(-lastUpdate$.diff(Date.now())).asHours();
@@ -26805,7 +26808,7 @@ function Main() {
     isUserSelected,
     selectedUserBuilds,
     handleScrollToUser
-  } = useMain$1();
+  } = useMain();
   const [showLogsOnAccount, setShowLogs] = reactExports.useState("");
   const tableCols = [
     {
@@ -26914,7 +26917,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.42";
+const version = "1.0.43";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
