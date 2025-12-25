@@ -26748,7 +26748,7 @@ function useCountdown(account) {
 }
 function Countdown({ user, callback }) {
   const { countdown } = useCountdown(user.data.build);
-  if (countdown && countdown <= 0) {
+  if (countdown && countdown <= 1) {
     callback?.(user);
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:flex-1", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: countdown }) });
@@ -26920,7 +26920,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.47";
+const version = "1.0.48";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
