@@ -521,8 +521,8 @@ video {
 .table {
   display: table;
 }
-.aspect-video {
-  aspect-ratio: 16 / 9;
+.grid {
+  display: grid;
 }
 .\!h-8 {
   height: 2rem !important;
@@ -544,9 +544,6 @@ video {
 }
 .w-\[205px\] {
   width: 205px;
-}
-.w-\[300px\] {
-  width: 300px;
 }
 .w-\[400px\] {
   width: 400px;
@@ -574,6 +571,9 @@ video {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .flex-row {
   flex-direction: row;
