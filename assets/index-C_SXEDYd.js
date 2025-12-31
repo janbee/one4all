@@ -26915,13 +26915,13 @@ function Main() {
     showLogsOnAccount && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "middle-wrap overflow-scroll", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FullLogs, { account: showLogsOnAccount, onClose: () => setShowLogs("") }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap w-[400px] p-2 flex gap-2 flex-col bg-gray-600", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 gap-2", children: Array.from(selectedUserBuilds).map((build) => {
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 gap-2 overflow-auto", children: Array.from(selectedUserBuilds).map((build) => {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Webview, { account: build, onDelete: handleDeleteUser }, build);
       }) })
     ] })
   ] });
 }
-const version = "1.0.51";
+const version = "1.0.52";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
