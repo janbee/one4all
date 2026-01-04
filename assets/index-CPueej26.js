@@ -18316,7 +18316,10 @@ function useMain() {
           if (lastLogin) {
             const lastUpdate = new Date(lastLogin);
             const lastUpdate$ = dayjs(lastUpdate).tz("America/Denver");
-            dayjs.duration(-lastUpdate$.diff(Date.now())).asHours();
+            const hoursPassed = dayjs.duration(-lastUpdate$.diff(Date.now())).asHours();
+            if (hoursPassed >= 48) {
+              handleUserClick(user);
+            }
           }
         });
         setUsers(sortedUsers);
@@ -26921,7 +26924,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.54";
+const version = "1.0.55";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
