@@ -24511,11 +24511,6 @@ function useWebview(account) {
           handleReload();
           return false;
         }
-        const { weekStart } = getMTDates();
-        const weeklySummary = user?.data.weeklySummary?.find(
-          (item) => item.data.weekStart === weekStart.toISOString()
-        );
-        $Store.weeklySummary$[account].next(weeklySummary);
         const globalObject2 = JSON.stringify({
           account,
           user,
@@ -24524,6 +24519,14 @@ function useWebview(account) {
           codePushVersion: ""
         });
         if (isTerminatedRef.current) return false;
+        const { weekStart } = getMTDates();
+        const weeklySummary = user?.data.weeklySummary?.find(
+          (item) => item.data.weekStart === weekStart.toISOString()
+        );
+        $Store.weeklySummary$[account].next(weeklySummary);
+        if (isLoggedIn) {
+          $Store.userSession$[account].next(user.data.userSession);
+        }
         webview.executeJavaScript(
           `
           const globalObject = \`${globalObject2}\`;
@@ -26924,7 +26927,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.59";
+const version = "1.0.60";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
