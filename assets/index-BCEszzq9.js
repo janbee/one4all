@@ -26924,7 +26924,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.58";
+const version = "1.0.59";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
