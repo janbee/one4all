@@ -24379,7 +24379,7 @@ function useWebview(account) {
   const isTerminatedRef = reactExports.useRef(false);
   const [isDone, setIsDone] = reactExports.useState(false);
   const [webviewId, setWebviewId] = reactExports.useState(0);
-  const [reload, setReload] = reactExports.useState(false);
+  const [reload, setReload] = reactExports.useState(0);
   const debouncedMethod = reactExports.useMemo(
     () => debounce(
       () => {
@@ -24590,14 +24590,13 @@ function useWebview(account) {
         Action: "Destroyed Webview via Main",
         Status: `Reloading`
       });
-      setReload(true);
       $Store.userSession$[account].next(void 0);
       setTimeout(() => {
         $Store.actionStatus$[account].next({
           Action: "Putting back Webview",
           Status: `Reloaded`
         });
-        setReload(false);
+        setReload((prev) => prev + 1);
       }, 1e3);
     });
   }, [webviewId]);
@@ -24674,7 +24673,7 @@ const Webview = reactExports.memo(function Webview2({
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: !reload && !!account && /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: !!account && /* @__PURE__ */ jsxRuntimeExports.jsx(
       "webview",
       {
         className: "h-full w-full",
@@ -24683,7 +24682,8 @@ const Webview = reactExports.memo(function Webview2({
         partition: `persist:${account.toLowerCase()}`,
         src: `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
         preload: `file://${window.__preload}/play-ab.js`
-      }
+      },
+      `${account}-${reload}`
     ) })
   ] });
 });
@@ -26943,7 +26943,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.63";
+const version = "1.0.64";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
