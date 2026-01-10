@@ -23156,7 +23156,7 @@ function useMain() {
       localStorage.setItem("selectedUsers", JSON.stringify(usersArray));
       setSelectedUserBuilds((prev) => /* @__PURE__ */ new Set([...prev, user.data.build]));
     },
-    []
+    [isUserSelected]
   );
   const handleScrollToUser = reactExports.useCallback((user) => {
     const element = document.getElementById(`PlayAbWebView-${user.data.build}`);
@@ -23179,7 +23179,6 @@ function useMain() {
     setSelectedUserBuilds((prev) => {
       const newSet = new Set(prev);
       newSet.delete(build);
-      console.log("gaga----------------------newSet---------------", newSet);
       return newSet;
     });
   }, []);
@@ -29255,12 +29254,12 @@ class StoreService2 {
   }, {});
 }
 const $Store = new StoreService2();
-function useWebview(account, fn) {
+function useWebview(account) {
   const webviewRef = reactExports.useRef(null);
   const isTerminatedRef = reactExports.useRef(false);
   const [isDone, setIsDone] = reactExports.useState(false);
   const [webviewId, setWebviewId] = reactExports.useState(0);
-  const [reload] = reactExports.useState(0);
+  const [reload, setReload] = reactExports.useState(0);
   const debouncedMethod = reactExports.useMemo(
     () => debounce(
       () => {
@@ -29268,7 +29267,8 @@ function useWebview(account, fn) {
           Action: "Why its stopping here ",
           Status: `isTerminatedRef.current ${isTerminatedRef.current}`
         });
-        handleReload().then();
+        if (isTerminatedRef.current) return;
+        handleReload();
       },
       6e4,
       (countdown) => {
@@ -29383,7 +29383,7 @@ function useWebview(account, fn) {
           });
           await delay(remaining.ms);
           clearInterval(inter);
-          handleReload().then();
+          handleReload();
           return false;
         }
         const currentDate = /* @__PURE__ */ new Date();
@@ -29392,7 +29392,7 @@ function useWebview(account, fn) {
         const hasProxy = await window.api.setProxy(webContentsId, allAccounts, account);
         if (isTerminatedRef.current) return false;
         if (!hasProxy) {
-          handleReload().then();
+          handleReload();
           return false;
         }
         const globalObject2 = JSON.stringify({
@@ -29460,38 +29460,31 @@ function useWebview(account, fn) {
   const handleWebviewDestroy = reactExports.useCallback(async (webviewId2) => {
     await window.api.webviewDestroy(webviewId2, account);
   }, []);
-  const handleReload = reactExports.useCallback(async () => {
+  const handleReload = reactExports.useCallback(() => {
     $Store.actionStatus$[account].next({
       Action: "Destroying Webview via Main",
       Status: `handleWebviewDestroy()`
     });
-    await handleWebviewDestroy(webviewId);
-    $Store.actionStatus$[account].next({
-      Action: "Destroyed Webview via Main",
-      Status: `Reloading`
-    });
-    $Store.userSession$[account].next(void 0);
-    fn.onDelete(account);
-    setTimeout(() => {
+    handleWebviewDestroy(webviewId).then(() => {
       $Store.actionStatus$[account].next({
-        Action: "Putting back Webview",
-        Status: `Reloaded`
+        Action: "Destroyed Webview via Main",
+        Status: `Reloading`
       });
-      fn.onAddUser(account);
-      debouncedMethod();
-    }, 1e3);
+      $Store.userSession$[account].next(void 0);
+      setTimeout(() => {
+        $Store.actionStatus$[account].next({
+          Action: "Putting back Webview",
+          Status: `Reloaded`
+        });
+        setReload((prev) => prev + 1);
+      }, 1e3);
+    });
   }, [webviewId]);
-  const handleDelete = reactExports.useCallback(async () => {
-    if (fn.onDelete) {
-      await handleWebviewDestroy(webviewId);
-      fn.onDelete(account);
-    }
-  }, [account, fn.onDelete, webviewId]);
   reactExports.useEffect(() => {
     const ipcHandler = (_, { data: data2 }) => {
       debouncedMethod();
       if (data2.Status === "reload$") {
-        handleReload().then();
+        handleReload();
       }
       if (data2.Status === "weeklySummary$") {
         const weeklySummary = data2.data;
@@ -29514,22 +29507,20 @@ function useWebview(account, fn) {
     account,
     handleWebviewDestroy,
     webviewId,
-    isDone,
-    handleDelete
+    isDone
   };
 }
 const Webview = reactExports.memo(function Webview2({
   account,
-  onAddUser,
   onDelete
 }) {
-  const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone, handleDelete } = useWebview(
-    account,
-    {
-      onAddUser,
-      onDelete
+  const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account);
+  const handleDelete = reactExports.useCallback(async () => {
+    if (onDelete) {
+      await handleWebviewDestroy(webviewId);
+      onDelete(account);
     }
-  );
+  }, [account, onDelete, webviewId]);
   if (isDone) {
     handleWebviewDestroy(webviewId).then(() => {
       onDelete(account);
@@ -31827,25 +31818,12 @@ function Main() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap w-[800px] p-2 flex gap-2 flex-col bg-gray-600", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-6 gap-2 overflow-auto", children: Array.from(selectedUserBuilds).map((build) => {
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Webview,
-          {
-            account: build,
-            onDelete: handleDeleteUser,
-            onAddUser: (userBuild) => {
-              const foundItem = users.find((item) => item.data.build === userBuild);
-              if (foundItem) {
-                handleUserClick(foundItem);
-              }
-            }
-          },
-          build
-        );
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(Webview, { account: build, onDelete: handleDeleteUser }, build);
       }) })
     ] })
   ] });
 }
-const version = "1.0.67";
+const version = "1.0.68";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
