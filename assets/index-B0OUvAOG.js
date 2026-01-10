@@ -29476,6 +29476,7 @@ function useWebview(account) {
           Action: "Putting back Webview",
           Status: `Reloaded`
         });
+        debouncedMethod();
         setReload((prev) => prev + 1);
       }, 1e3);
     });
@@ -31823,7 +31824,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.68";
+const version = "1.0.69";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
