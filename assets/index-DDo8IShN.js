@@ -24383,6 +24383,10 @@ function useWebview(account) {
   const debouncedMethod = reactExports.useMemo(
     () => debounce(
       () => {
+        $Store.actionStatus$[account].next({
+          Action: "Why its stopping here ",
+          Status: `isTerminatedRef.current ${isTerminatedRef.current}`
+        });
         if (isTerminatedRef.current) return;
         handleReload();
       },
@@ -26927,7 +26931,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.61";
+const version = "1.0.62";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
