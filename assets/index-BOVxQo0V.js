@@ -24581,10 +24581,22 @@ function useWebview(account) {
     await window.api.webviewDestroy(webviewId2, account);
   }, []);
   const handleReload = reactExports.useCallback(() => {
+    $Store.actionStatus$[account].next({
+      Action: "Destroying Webview via Main",
+      Status: `handleWebviewDestroy()`
+    });
     handleWebviewDestroy(webviewId).then(() => {
+      $Store.actionStatus$[account].next({
+        Action: "Destroyed Webview via Main",
+        Status: `Reloading`
+      });
       setReload(true);
       $Store.userSession$[account].next(void 0);
       setTimeout(() => {
+        $Store.actionStatus$[account].next({
+          Action: "Putting back Webview",
+          Status: `Reloaded`
+        });
         setReload(false);
       }, 1e3);
     });
@@ -26931,7 +26943,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.62";
+const version = "1.0.63";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
