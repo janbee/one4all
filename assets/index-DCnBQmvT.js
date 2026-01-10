@@ -29268,7 +29268,6 @@ function useWebview(account, fn) {
           Action: "Why its stopping here ",
           Status: `isTerminatedRef.current ${isTerminatedRef.current}`
         });
-        if (isTerminatedRef.current) return;
         handleReload().then();
       },
       6e4,
@@ -29384,7 +29383,7 @@ function useWebview(account, fn) {
           });
           await delay(remaining.ms);
           clearInterval(inter);
-          handleReload();
+          handleReload().then();
           return false;
         }
         const currentDate = /* @__PURE__ */ new Date();
@@ -29393,7 +29392,7 @@ function useWebview(account, fn) {
         const hasProxy = await window.api.setProxy(webContentsId, allAccounts, account);
         if (isTerminatedRef.current) return false;
         if (!hasProxy) {
-          handleReload();
+          handleReload().then();
           return false;
         }
         const globalObject2 = JSON.stringify({
@@ -31846,7 +31845,7 @@ function Main() {
     ] })
   ] });
 }
-const version = "1.0.66";
+const version = "1.0.67";
 function App() {
   const [appReady, setAppReady] = reactExports.useState(false);
   reactExports.useEffect(() => {
