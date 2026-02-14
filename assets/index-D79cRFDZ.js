@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-HTywPvXj.js"(exports, module) {
+  "assets/index-D79cRFDZ.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -27733,14 +27733,18 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         [selectedUserBuilds]
       );
       const handlePublish = reactExports.useCallback((usersArray) => {
-        console.log("gaga---------------------------publish----------------", usersArray.length);
-        $PN.publish({
-          channel: PNChannel.AccountCount,
-          message: {
-            accounts: usersArray.length,
-            from: window.api.getHostname()
-          }
-        }).catch().finally();
+        console.log("gaga---------------------------publish----------------", usersArray.length, {
+          accounts: usersArray.length,
+          from: window.api.getHostname()
+        });
+        if (window.api.getHostname()) {
+          $PN.publish({
+            channel: PNChannel.AccountCount,
+            message: {
+              data: { [window.api.getHostname()]: usersArray.length }
+            }
+          }).catch().finally();
+        }
       }, []);
       const handleUserClick = reactExports.useCallback(
         (user) => {
@@ -30416,7 +30420,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.82";
+    const version = "1.0.83";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
