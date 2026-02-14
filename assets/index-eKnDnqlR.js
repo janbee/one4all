@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-BcbOt7Vv.js"(exports, module) {
+  "assets/index-eKnDnqlR.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -27697,12 +27697,12 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
         };
         $PN.subscribe({
-          channels: [PNChannel.OpenAccount + channel]
+          channels: [PNChannel.OpenAccount + channel + "sub"]
         });
         $PN.addListener(PNListener);
         return () => {
           $PN.unsubscribe({
-            channels: [PNChannel.OpenAccount + channel]
+            channels: [PNChannel.OpenAccount + channel + "sub"]
           });
           $PN.removeListener(PNListener);
         };
@@ -27714,7 +27714,9 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       const [error, setError] = reactExports.useState(null);
       const [selectedUserBuilds, setSelectedUserBuilds] = reactExports.useState(/* @__PURE__ */ new Set());
       usePubnub(window.api?.getHostname(), (msg) => {
-        handleUserClick({ data: { build: msg.account } });
+        if (msg.account) {
+          handleUserClick({ data: { build: msg.account } });
+        }
       });
       const loadSelectedUsers = reactExports.useCallback(() => {
         const existingData = localStorage.getItem("selectedUsers");
@@ -27732,7 +27734,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       );
       const handlePublish = reactExports.useCallback((usersArray) => {
         $PN.publish({
-          channel: PNChannel.OpenAccount + window.api.getHostname(),
+          channel: PNChannel.OpenAccount + window.api.getHostname() + "pub",
           message: {
             accounts: usersArray.length
           }
@@ -30412,7 +30414,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.78";
+    const version = "1.0.79";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
