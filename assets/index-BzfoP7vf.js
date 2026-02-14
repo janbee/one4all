@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-D79cRFDZ.js"(exports, module) {
+  "assets/index-BzfoP7vf.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -27689,7 +27689,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       userId: "Talpakers"
     });
     const accounts = data;
-    function usePubnub(channel, onMessage) {
+    function usePubnub(onMessage) {
       reactExports.useEffect(() => {
         const PNListener = {
           message: function(event) {
@@ -27697,24 +27697,24 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
         };
         $PN.subscribe({
-          channels: [PNChannel.OpenAccount + channel]
+          channels: [PNChannel.OpenAccount]
         });
         $PN.addListener(PNListener);
         return () => {
           $PN.unsubscribe({
-            channels: [PNChannel.OpenAccount + channel]
+            channels: [PNChannel.OpenAccount]
           });
           $PN.removeListener(PNListener);
         };
-      }, [channel, onMessage]);
+      }, [onMessage]);
     }
     function useMain() {
       const [users, setUsers] = reactExports.useState([]);
       const [loading, setLoading] = reactExports.useState(false);
       const [error, setError] = reactExports.useState(null);
       const [selectedUserBuilds, setSelectedUserBuilds] = reactExports.useState(/* @__PURE__ */ new Set());
-      usePubnub(window.api?.getHostname(), (msg) => {
-        if (msg.account) {
+      usePubnub((msg) => {
+        if (msg.account && msg.hostname === window.api?.getHostname()) {
           handleUserClick({ data: { build: msg.account } });
         }
       });
@@ -27733,10 +27733,6 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         [selectedUserBuilds]
       );
       const handlePublish = reactExports.useCallback((usersArray) => {
-        console.log("gaga---------------------------publish----------------", usersArray.length, {
-          accounts: usersArray.length,
-          from: window.api.getHostname()
-        });
         if (window.api.getHostname()) {
           $PN.publish({
             channel: PNChannel.AccountCount,
@@ -30420,7 +30416,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.83";
+    const version = "1.0.84";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
