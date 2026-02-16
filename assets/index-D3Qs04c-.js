@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-BNMMAnd7.js"(exports, module) {
+  "assets/index-D3Qs04c-.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -8717,6 +8717,8 @@ var require_index_001 = __commonJS({
       SupabaseTable2["Predictions"] = "predictions";
       SupabaseTable2["Withdrawals"] = "withdrawals";
       SupabaseTable2["Others"] = "others";
+      SupabaseTable2["MLVetoLogs"] = "ml_veto_logs";
+      SupabaseTable2["PredictionOutcomes"] = "prediction_outcomes";
       return SupabaseTable2;
     })(SupabaseTable || {});
     var SupabaseTableFN = /* @__PURE__ */ ((SupabaseTableFN2) => {
@@ -30416,13 +30418,21 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.86";
+    const version = "1.0.87";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
         document.title = `One4All - v${version}`;
         const loginSubscription = SharedApiSupabase.login("talpaklogen@gmail.com").pipe(delay$1(500)).subscribe(() => {
           setAppReady(true);
+          if (window.api.getHostname()) {
+            $PN.publish({
+              channel: PNChannel.AccountCount,
+              message: {
+                data: { [window.api.getHostname()]: 0 }
+              }
+            }).catch().finally();
+          }
         });
         return () => {
           loginSubscription.unsubscribe();
