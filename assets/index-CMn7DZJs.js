@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-W0z4RnYB.js"(exports, module) {
+  "assets/index-CMn7DZJs.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -27851,7 +27851,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       }, {});
     }
     const $Store = new StoreService();
-    function useWebview(account) {
+    function useWebview(account, onDelete) {
       const webviewRef = reactExports.useRef(null);
       const isTerminatedRef = reactExports.useRef(false);
       const [isDone, setIsDone] = reactExports.useState(false);
@@ -28095,6 +28095,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
           if (data2.Action === "NO PROMO cooldown" && data2.Status === "0 sec") {
             handleWebviewDestroy(webviewId).then();
+            onDelete(account);
           }
         };
         const removeIpcListener = window.electron.ipcRenderer.on(`actionStatus$-${account}`, ipcHandler);
@@ -28118,7 +28119,10 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       account,
       onDelete
     }) {
-      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account);
+      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(
+        account,
+        onDelete
+      );
       const handleDelete = reactExports.useCallback(async () => {
         if (onDelete) {
           await handleWebviewDestroy(webviewId);
@@ -30424,7 +30428,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.139";
+    const version = "1.0.140";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
