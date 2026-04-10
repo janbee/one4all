@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-CMn7DZJs.js"(exports, module) {
+  "assets/index-BJ42-tHI.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -27851,7 +27851,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       }, {});
     }
     const $Store = new StoreService();
-    function useWebview(account, onDelete) {
+    function useWebview(account) {
       const webviewRef = reactExports.useRef(null);
       const isTerminatedRef = reactExports.useRef(false);
       const [isDone, setIsDone] = reactExports.useState(false);
@@ -28095,7 +28095,6 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
           if (data2.Action === "NO PROMO cooldown" && data2.Status === "0 sec") {
             handleWebviewDestroy(webviewId).then();
-            onDelete(account);
           }
         };
         const removeIpcListener = window.electron.ipcRenderer.on(`actionStatus$-${account}`, ipcHandler);
@@ -28104,7 +28103,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             removeIpcListener();
           }
         };
-      }, [webviewId]);
+      }, []);
       return {
         /* ref */
         webviewRef,
@@ -28119,10 +28118,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       account,
       onDelete
     }) {
-      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(
-        account,
-        onDelete
-      );
+      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account);
       const handleDelete = reactExports.useCallback(async () => {
         if (onDelete) {
           await handleWebviewDestroy(webviewId);
@@ -30198,10 +30194,20 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       return data2;
     }
     function WeeklySummary({ user }) {
-      const { weeklySummary } = useMainStore(user.data.build);
-      const totalEarnings = weeklySummary?.data.totalEarnings || 0;
-      const winnings = weeklySummary?.data.winnings || 0;
-      const bonus = weeklySummary?.data.potentialBonus || 0;
+      const { weekStart } = getMTDates();
+      const weeklySummary = user.data.weeklySummary?.find(
+        (item) => item.data.weekStart === weekStart.toISOString()
+      );
+      const isDone = weeklySummary?.data.done === true && weeklySummary?.data.openBets === 0;
+      let totalEarnings = weeklySummary?.data.totalEarnings || 0;
+      let winnings = weeklySummary?.data.winnings || 0;
+      let bonus = weeklySummary?.data.potentialBonus || 0;
+      if (!isDone) {
+        const { weeklySummary: weeklySummary2 } = useMainStore(user.data.build);
+        totalEarnings = weeklySummary2?.data.totalEarnings || 0;
+        winnings = weeklySummary2?.data.winnings || 0;
+        bonus = weeklySummary2?.data.potentialBonus || 0;
+      }
       return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:flex-1", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "week-summary-wrap flex justify-evenly", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "span",
@@ -30262,13 +30268,22 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:flex-1", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: countdown }) });
     }
     function WeeklyProgress({ user }) {
-      const { weeklySummary } = useMainStore(user.data.build);
-      const totalStaked = weeklySummary?.data.totalStaked || 0;
+      const { weekStart } = getMTDates();
+      const weeklySummary = user.data.weeklySummary?.find(
+        (item) => item.data.weekStart === weekStart.toISOString()
+      );
+      let totalStaked = weeklySummary?.data.totalStaked || 0;
+      let isDone = weeklySummary?.data.done === true && weeklySummary?.data.openBets === 0;
+      if (!isDone) {
+        const { weeklySummary: weeklySummary2 } = useMainStore(user.data.build);
+        totalStaked = weeklySummary2?.data.totalStaked || 0;
+        isDone = weeklySummary2?.data.done === true && weeklySummary2?.data.openBets === 0;
+      }
       return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:w-full", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Progress,
         {
           inverted: true,
-          success: weeklySummary?.data.done === true && totalStaked !== 0,
+          success: isDone,
           precision: 0,
           value: Math.floor(totalStaked),
           progress: "percent",
@@ -30428,7 +30443,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.140";
+    const version = "1.0.136";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
