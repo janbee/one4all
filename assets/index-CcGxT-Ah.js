@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-DuIINX89.js"(exports, module) {
+  "assets/index-CcGxT-Ah.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -27790,7 +27790,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       const fetchUsers = reactExports.useCallback(() => {
         setLoading(true);
         setError(null);
-        return SharedApiSupabase.getUsers().subscribe({
+        return SharedApiSupabase.getUsersWithWeeklySummary().subscribe({
           next: (res) => {
             const sortedUsers = (res.data ?? []).sort((a, b) => b.data.build.localeCompare(a.data.build)).reverse();
             sortedUsers.filter((user) => {
@@ -30277,22 +30277,20 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       if (!isDone) {
         const { weeklySummary: weeklySummary2 } = useMainStore(user.data.build);
         totalStaked = weeklySummary2?.data.totalStaked || 0;
+        isDone = weeklySummary2?.data.done === true && weeklySummary2?.data.openBets === 0;
       }
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { className: "md:w-full", textAlign: "center", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Progress,
-          {
-            inverted: true,
-            success: isDone,
-            precision: 0,
-            value: Math.floor(totalStaked),
-            progress: "percent",
-            total: 500,
-            label: toMoney(totalStaked)
-          }
-        ),
-        weeklySummary?.data.done + " - " + weekStart.toISOString()
-      ] });
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "md:w-full", textAlign: "center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Progress,
+        {
+          inverted: true,
+          success: isDone,
+          precision: 0,
+          value: Math.floor(totalStaked),
+          progress: "percent",
+          total: 500,
+          label: toMoney(totalStaked)
+        }
+      ) });
     }
     function Bets({ user }) {
       const { weeklySummary } = useMainStore(user.data.build);
@@ -30445,7 +30443,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.140";
+    const version = "1.0.141";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
