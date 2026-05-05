@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-D8cUNVN2.js"(exports, module) {
+  "assets/index-BwFE6RQz.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -35786,17 +35786,17 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       });
       const bonus = weeklySummary?.data.bonuses?.[0] || { Amount: 0 };
       const potentialBonus = lastWeeklySummary?.data.potentialBonus || 0;
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
           " ",
           toMoney(bonus?.Amount, 0)
         ] }),
-        " | ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "-" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
           " ",
           toMoney(potentialBonus, 0)
         ] })
-      ] });
+      ] }) });
     }
     function Main() {
       const {
@@ -35922,7 +35922,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.149";
+    const version = "1.0.150";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
