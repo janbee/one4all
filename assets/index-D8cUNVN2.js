@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-Bv5VSX8k.js"(exports, module) {
+  "assets/index-D8cUNVN2.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -27323,7 +27323,7 @@ ${suffix}`;
     const toMoney = (money, digits) => {
       const _config = {
         currency: "USD",
-        minimumFractionDigits: 2
+        minimumFractionDigits: digits !== void 0 ? digits : 2
       };
       const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -35776,6 +35776,28 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         }
       );
     }
+    function Bonus({ user }) {
+      const { weekStart, lastWeekStart } = getMTDates();
+      const weeklySummary = user.data.weeklySummary?.find((item) => {
+        return item.data.weekStart === weekStart.toISOString();
+      });
+      const lastWeeklySummary = user.data.weeklySummary?.find((item) => {
+        return item.data.weekStart === lastWeekStart.toISOString();
+      });
+      const bonus = weeklySummary?.data.bonuses?.[0] || { Amount: 0 };
+      const potentialBonus = lastWeeklySummary?.data.potentialBonus || 0;
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+          " ",
+          toMoney(bonus?.Amount, 0)
+        ] }),
+        " | ",
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+          " ",
+          toMoney(potentialBonus, 0)
+        ] })
+      ] });
+    }
     function Main() {
       const {
         users,
@@ -35812,6 +35834,13 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           name: /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: "Bets" }),
           render: (user) => {
             return /* @__PURE__ */ jsxRuntimeExports.jsx(Bets, { user });
+          },
+          className: "w-[50px]"
+        },
+        {
+          name: /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: "Bonus" }),
+          render: (user) => {
+            return /* @__PURE__ */ jsxRuntimeExports.jsx(Bonus, { user });
           },
           className: "w-[50px]"
         },
@@ -35893,7 +35922,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.148";
+    const version = "1.0.149";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
