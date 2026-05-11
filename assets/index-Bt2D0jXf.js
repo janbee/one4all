@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-D2mWxpmM.js"(exports, module) {
+  "assets/index-Bt2D0jXf.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -33536,7 +33536,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
           if (data2.Action === "Terminator Check") {
             const weeklySummary = data2.data;
-            const isDone2 = weeklySummary.data.winnings >= 35 || weeklySummary.data.totalSettledBets >= 515;
+            const isDone2 = weeklySummary.data.winnings >= 35 || weeklySummary.data.totalSettledBets >= 500;
             if (isDone2 && weeklySummary.data.openBets === 0 && weeklySummary.data.freeBets.length === 0) {
               setIsDone(true);
             }
@@ -35923,7 +35923,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.153";
+    const version = "1.0.154";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
