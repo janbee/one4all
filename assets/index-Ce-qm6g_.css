@@ -499,12 +499,6 @@ video {
 [hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
-.static {
-  position: static;
-}
-.fixed {
-  position: fixed;
-}
 .absolute {
   position: absolute;
 }
@@ -529,9 +523,6 @@ video {
 .z-10 {
   z-index: 10;
 }
-.m-1 {
-  margin: 0.25rem;
-}
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -543,9 +534,6 @@ video {
 }
 .flex {
   display: flex;
-}
-.table {
-  display: table;
 }
 .grid {
   display: grid;
