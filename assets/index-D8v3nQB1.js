@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-DWL6IU5j.js"(exports, module) {
+  "assets/index-D8v3nQB1.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -35688,8 +35688,29 @@ ${suffix}`;
       }
       deleteGameStats() {
         const sixHoursAgo = new Date(Date.now() - 6 * 60 * 60 * 1e3).toISOString();
-        const promise = supabaseClient.from(SupabaseTable.Stats).delete({ count: "exact" }).lt("createdAt", sixHoursAgo);
-        return buildFromPromise(promise);
+        const BATCH_SIZE = 10;
+        return from(
+          (async () => {
+            const { data: rows, error: selectError } = await supabaseClient.from(SupabaseTable.Stats).select("_id").lt("createdAt", sixHoursAgo);
+            if (selectError) {
+              return { data: null, error: selectError, count: 0 };
+            }
+            if (!rows || rows.length === 0) {
+              return { data: null, error: null, count: 0 };
+            }
+            const ids = rows.map((r2) => r2._id);
+            let totalDeleted = 0;
+            for (let i = 0; i < ids.length; i += BATCH_SIZE) {
+              const batch = ids.slice(i, i + BATCH_SIZE);
+              const { count, error: deleteError } = await supabaseClient.from(SupabaseTable.Stats).delete({ count: "exact" }).in("_id", batch);
+              if (deleteError) {
+                return { data: null, error: deleteError, count: totalDeleted };
+              }
+              totalDeleted += count ?? 0;
+            }
+            return { data: null, error: null, count: totalDeleted };
+          })()
+        );
       }
     }
     const predictionsService = new PredictionsService();
@@ -44742,7 +44763,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       const bonus = weeklySummary?.data.bonuses?.[0] || { Amount: 0 };
       const potentialBonus = lastWeeklySummary?.data.potentialBonus || 0;
       const isRed = bonus?.Amount > 0 && bonus?.Amount < potentialBonus;
-      const isGreen = bonus?.Amount > 0 && bonus?.Amount === potentialBonus;
+      const isGreen = bonus?.Amount > 0 && bonus?.Amount >= potentialBonus;
       return /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "span",
@@ -44885,7 +44906,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.160";
+    const version = "1.0.161";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
