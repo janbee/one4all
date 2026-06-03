@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-3vTsVYtZ.js"(exports, module) {
+  "assets/index-B_f6gkc2.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -42595,6 +42595,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             className: "h-full w-full",
             ref: webviewRef,
             nodeintegration: true,
+            disablewebsecurity: true,
             webpreferences: "contextIsolation=false, spellcheck=false",
             id: `PlayAbWebView-${account}`,
             partition: `persist:${account.toLowerCase()}`,
@@ -44905,12 +44906,13 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap w-[800px] p-2 flex gap-2 flex-col bg-gray-600", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-6 gap-2 overflow-auto", children: Array.from(selectedUserBuilds).map((build) => {
+            console.log("build-------------------------------------", build);
             return /* @__PURE__ */ jsxRuntimeExports.jsx(Webview, { account: build, onDelete: handleDeleteUser }, build);
           }) })
         ] })
       ] });
     }
-    const version = "1.0.175";
+    const version = "1.0.177";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
