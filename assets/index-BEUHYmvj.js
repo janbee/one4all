@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-D4WxwOdW.js"(exports, module) {
+  "assets/index-BEUHYmvj.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -36122,7 +36122,7 @@ ${suffix}`;
     const MARILOU = ["loupingol@gmail.com", "Admin123!@#", { "cashoutEmail": "loupingol@gmail.com", "maintainCash": 100, "fixedAmount": 200 }, "944a72c9-30b7-4fe3-a0ac-60c0ef39bbdf", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-11", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "4kdqa68R8wgSQd~Men" }]];
     const BERNADETTE = ["bsalazar0716@yahoo.com", "Playalberta", null, "15d41739-c308-43f9-8ca5-199a4fee97c6", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-11", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "4kdqa68R8wgSQd~Men" }]];
     const ELISA = ["lisantiago74@yahoo.com", "Libran1104", null, "f1083951-a6a0-4c86-af53-d848e3288f86", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-9", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10009, "username": "user-sphhn6tfr3-country-ca", "password": "4kdqa68R8wgSQd~Men" }]];
-    const JAY = ["jay.villafloor@albertabet.online", "Admin123!@#", null, "fec0ab40-2a91-483f-8a52-2af7c383b37f", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-4", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10004, "username": "user-sphhn6tfr3-country-ca", "password": "4kdqa68R8wgSQd~Men" }]];
+    const JAY = ["jay.villafloor@albertabet.online", "Admin123!@#", null, "fec0ab40-2a91-483f-8a52-2af7c383b37f", [{ "provider": "decodo", "host": "isp.decodo.com", "port": 10004, "username": "user-sphhn6tfr3-country-ca", "password": "4kdqa68R8wgSQd~Men" }, { "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-4", "password": "gaga123123" }]];
     const CABDI = ["cabdi.shakuur@janbeeangel.es", "Admin123!@#", null, "fb08a0b1-cbd2-434a-98f3-73ee7269e345", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-4", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10004, "username": "user-sphhn6tfr3-country-ca", "password": "4kdqa68R8wgSQd~Men" }]];
     const data = {
       JERO,
@@ -42391,7 +42391,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
               Action: `CheckProxy`,
               Status: `checkProxy ${checkProxy}`
             });
-            const res = checkProxy ? await lastValueFrom(SharedApiSupabase.getUsersWithWeeklySummary(email)) : await lastValueFrom(SharedApiSupabase.getAndUpdateUserWithWeeklySummary(email));
+            const res = checkProxy ? await lastValueFrom(SharedApiSupabase.getUsersWithWeeklySummary(email)) : await lastValueFrom(SharedApiSupabase.getUsersWithWeeklySummary(email));
             if (isTerminatedRef.current) return false;
             const user = res.data?.[0];
             if (!user) {
@@ -42644,8 +42644,16 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         logs
       };
     }
+    function formatTimestamp(iso) {
+      try {
+        return new Date(iso).toLocaleTimeString();
+      } catch {
+        return iso;
+      }
+    }
     function tryParseJson(value) {
-      const trimmed = value.trim();
+      const trimmed = value?.trim();
+      if (!trimmed) return null;
       if (!(trimmed.startsWith("{") || trimmed.startsWith("["))) return null;
       try {
         const parsed = JSON.parse(trimmed);
@@ -42690,7 +42698,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             {
               className: "flex items-start gap-2 px-2 py-1 bg-gray-900/50 hover:bg-gray-900 rounded text-[10px] font-mono transition-colors justify-between",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-500 whitespace-nowrap", children: log.timestamp }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-500 whitespace-nowrap", children: formatTimestamp(log.timestamp) }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-end flex-1 min-w-0", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-cyan-400 break-words text-right", children: log.Action }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(FormatStatus, { value: log.Status })
@@ -44571,12 +44579,12 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       reactExports.useEffect(() => {
         const ipcHandler = (_, { data: data2 }) => {
           setInfo(data2);
-          const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
+          const timestamp = (/* @__PURE__ */ new Date()).toISOString();
           $Logs.add(account, { ...data2, timestamp });
         };
         const rxHandler = (data2) => {
           setInfo(data2);
-          const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
+          const timestamp = (/* @__PURE__ */ new Date()).toISOString();
           $Logs.add(account, { ...data2, timestamp });
         };
         const removeIpcListener = window.electron.ipcRenderer.on(`actionStatus$-${account}`, ipcHandler);
@@ -44932,7 +44940,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.182";
+    const version = "1.0.183";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
