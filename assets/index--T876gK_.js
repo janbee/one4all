@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-CxEqsyYt.js"(exports, module) {
+  "assets/index--T876gK_.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -44903,68 +44903,52 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         }
       ];
       return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex h-full", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "left-wrap flex-1 flex flex-col h-full text-white bg-neutral-950", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between px-3 py-2 bg-neutral-900 border-b border-neutral-800 z-20", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[11px] font-mono font-medium text-neutral-400", children: "Accounts" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "px-1.5 py-0.5 text-[10px] font-mono bg-neutral-800 text-neutral-300 rounded font-semibold", children: users.length })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                onClick: handleStartAll,
-                className: "px-3 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider bg-blue-600 hover:bg-blue-500 text-white rounded shadow-sm hover:shadow transition-all duration-200 active:scale-95 cursor-pointer",
-                children: "Start All"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 overflow-scroll", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Table,
-            {
-              size: "small",
-              selectable: true,
-              compact: true,
-              striped: true,
-              celled: true,
-              inverted: true,
-              unstackable: true,
-              className: "w-full table-fixed",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { className: "bg-neutral-900 sticky top-0 z-10 shadow-[0_1px_0_#374151]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: tableCols.map(
-                  ({ name, className, isVisible }, index) => isVisible === false ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    TableHeaderCell,
-                    {
-                      textAlign: "center",
-                      className: classNames(
-                        "tracking-tighter font-medium text-gray-300 uppercase text-[10px]",
-                        "py-1.5 !h-8",
-                        className
-                      ),
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block leading-none", children: name })
-                    },
-                    index
-                  )
-                ) }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { className: "divide-y divide-gray-800 text-[10px]", children: users.map((user) => {
-                  const selected = isUserSelected(user.data.build);
-                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    TableRow,
-                    {
-                      className: classNames("hover:bg-gray-800/50 transition-colors duration-150", {
-                        "selected group": selected
-                      }),
-                      onClick: () => !selected ? handleUserClick(user) : handleScrollToUser(user),
-                      children: tableCols.map(({ render, isVisible }, index) => {
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Fragment, { children: isVisible === false ? null : render(user) }, index);
-                      })
-                    },
-                    user._id
-                  );
-                }) })
-              ]
-            }
-          ) })
-        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "left-wrap flex-1 overflow-scroll text-white", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Table,
+          {
+            size: "small",
+            selectable: true,
+            compact: true,
+            striped: true,
+            celled: true,
+            inverted: true,
+            unstackable: true,
+            className: "w-full table-fixed",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { className: "bg-neutral-900 sticky top-0 z-10 shadow-[0_1px_0_#374151]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: tableCols.map(
+                ({ name, className, isVisible }, index) => isVisible === false ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  TableHeaderCell,
+                  {
+                    textAlign: "center",
+                    className: classNames(
+                      "tracking-tighter font-medium text-gray-300 uppercase text-[10px]",
+                      "py-1.5 !h-8",
+                      className
+                    ),
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block leading-none", children: name })
+                  },
+                  index
+                )
+              ) }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { className: "divide-y divide-gray-800 text-[10px]", children: users.map((user) => {
+                const selected = isUserSelected(user.data.build);
+                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  TableRow,
+                  {
+                    className: classNames("hover:bg-gray-800/50 transition-colors duration-150", {
+                      "selected group": selected
+                    }),
+                    onClick: () => !selected ? handleUserClick(user) : handleScrollToUser(user),
+                    children: tableCols.map(({ render, isVisible }, index) => {
+                      return /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Fragment, { children: isVisible === false ? null : render(user) }, index);
+                    })
+                  },
+                  user._id
+                );
+              }) })
+            ]
+          }
+        ) }),
         showLogsOnAccount && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "middle-wrap overflow-scroll", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FullLogs, { account: showLogsOnAccount, onClose: () => setShowLogs("") }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap w-[800px] p-2 flex gap-2 flex-col bg-gray-600", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
@@ -44975,7 +44959,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.186";
+    const version = "1.0.187";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
