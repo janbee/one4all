@@ -568,6 +568,9 @@ video {
 .h-2 {
   height: 0.5rem;
 }
+.h-\[250px\] {
+  height: 250px;
+}
 .h-full {
   height: 100%;
 }
@@ -616,8 +619,8 @@ video {
 .cursor-pointer {
   cursor: pointer;
 }
-.grid-cols-6 {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .flex-row {
   flex-direction: row;
