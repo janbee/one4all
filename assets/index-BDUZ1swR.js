@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-C5Eh7d5_.js"(exports, module) {
+  "assets/index-BDUZ1swR.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -42584,29 +42584,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         "Webview partition-------------------------------------",
         `partition=persist:${account}`
       );
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2 relative h-[250px]", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "flex justify-between items-center p-2 absolute bottom-0 left-0 right-0 bg-black/70",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-white font-sm truncate", children: [
-                account,
-                " #",
-                webviewId
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: handleDelete,
-                  className: "px-1.5 py-0.5 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors flex-shrink-0 ml-1",
-                  "aria-label": `Delete account ${account}`,
-                  children: "Delete"
-                }
-              )
-            ]
-          }
-        ),
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2 relative aspect-[9/11]", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-1", children: !!account && /* @__PURE__ */ jsxRuntimeExports.jsx(
           "webview",
           {
@@ -42621,7 +42599,23 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             preload: `file://${window.__preload.replace(/\/$/, "")}/play-ab.js`
           },
           `${account}-${reload}`
-        ) })
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-2  bg-black/70", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-white font-sm truncate", children: [
+            account,
+            " #",
+            webviewId
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              onClick: handleDelete,
+              className: "px-1.5 py-0.5 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors flex-shrink-0 ml-1",
+              "aria-label": `Delete account ${account}`,
+              children: "Delete"
+            }
+          )
+        ] })
       ] });
     });
     class LogsStoreService {
@@ -44950,7 +44944,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
         ) }),
         showLogsOnAccount && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "middle-wrap overflow-scroll", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FullLogs, { account: showLogsOnAccount, onClose: () => setShowLogs("") }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap w-[800px] p-2 flex gap-2 flex-col bg-gray-600", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap flex-1 p-2 flex gap-2 flex-col bg-gray-600", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-4 gap-2 overflow-auto", children: Array.from(selectedUserBuilds).map((build) => {
             console.log("build-------------------------------------", build);
@@ -44959,7 +44953,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.189";
+    const version = "1.0.190";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
