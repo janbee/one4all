@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-DAkpHO9a.js"(exports, module) {
+  "assets/index-DzcC0eis.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -42611,7 +42611,6 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         "div",
         {
           className: isMaximized ? "absolute inset-0 z-50 flex flex-col bg-gray-600" : "flex flex-col gap-2 relative aspect-[9/13] cursor-pointer hover:ring-2 hover:ring-blue-400 hover:ring-offset-1 hover:ring-offset-gray-600 rounded transition-all",
-          onClick: !isMaximized ? handleMaximizeClick : void 0,
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
@@ -45014,7 +45013,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.192";
+    const version = "1.0.193";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
