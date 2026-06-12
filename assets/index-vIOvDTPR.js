@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-BDUZ1swR.js"(exports, module) {
+  "assets/index-vIOvDTPR.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -42296,7 +42296,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       }, {});
     }
     const $Store = new StoreService();
-    function useWebview(account) {
+    function useWebview(account, isMaximized = false) {
       const webviewRef = reactExports.useRef(null);
       const isTerminatedRef = reactExports.useRef(false);
       const [isDone, setIsDone] = reactExports.useState(false);
@@ -42346,7 +42346,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             isTerminatedRef.current = false;
             const webContentsId = webview.getWebContentsId();
             setWebviewId(webContentsId);
-            webview.setZoomFactor(0.1);
+            webview.setZoomFactor(isMaximized ? 1 : 0.1);
             const playAbFromGH = await window.api?.getPlayAbFromGH();
             if (isTerminatedRef.current) return false;
             $Store.actionStatus$[account].next({
@@ -42503,6 +42503,15 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           debouncedMethod?.cancel();
         };
       }, [reload]);
+      reactExports.useEffect(() => {
+        const webview = webviewRef.current;
+        if (!webview) return;
+        try {
+          webview.setZoomFactor(isMaximized ? 1 : 0.1);
+        } catch (e) {
+          console.warn("Failed to adjust webview zoom:", e);
+        }
+      }, [isMaximized]);
       const handleWebviewDestroy = reactExports.useCallback(async (webviewId2) => {
         await window.api?.webviewDestroy(webviewId2, account);
       }, []);
@@ -42561,62 +42570,101 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         account,
         handleWebviewDestroy,
         webviewId,
-        isDone
+        isDone,
+        isMaximized
       };
     }
     const Webview = reactExports.memo(function Webview2({
       account,
-      onDelete
+      onDelete,
+      onMaximize,
+      isMaximized = false
     }) {
-      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account);
+      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account, isMaximized);
       const handleDelete = reactExports.useCallback(async () => {
         if (onDelete) {
           await handleWebviewDestroy(webviewId);
           onDelete(account);
         }
       }, [account, onDelete, webviewId]);
+      const handleMaximizeClick = reactExports.useCallback(
+        (e) => {
+          e.stopPropagation();
+          onMaximize?.(account);
+        },
+        [account, onMaximize]
+      );
       if (isDone) {
         handleWebviewDestroy(webviewId).then(() => {
           onDelete(account);
         });
       }
+      const srcUrl = reactExports.useMemo(
+        () => `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
+        [account, reload]
+      );
       console.log(
         "Webview partition-------------------------------------",
         `partition=persist:${account}`
       );
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2 relative aspect-[9/11]", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-1", children: !!account && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "webview",
-          {
-            className: "h-full w-full",
-            ref: webviewRef,
-            nodeintegration: true,
-            disablewebsecurity: true,
-            webpreferences: "contextIsolation=false, spellcheck=false",
-            id: `PlayAbWebView-${account}`,
-            partition: `persist:${account.toLowerCase()}`,
-            src: `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
-            preload: `file://${window.__preload.replace(/\/$/, "")}/play-ab.js`
-          },
-          `${account}-${reload}`
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-2  bg-black/70", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-white font-sm truncate", children: [
-            account,
-            " #",
-            webviewId
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: handleDelete,
-              className: "px-1.5 py-0.5 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors flex-shrink-0 ml-1",
-              "aria-label": `Delete account ${account}`,
-              children: "Delete"
-            }
-          )
-        ] })
-      ] });
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: isMaximized ? "absolute inset-0 z-50 flex flex-col bg-gray-600" : "flex flex-col gap-2 relative aspect-[9/13] cursor-pointer hover:ring-2 hover:ring-blue-400 hover:ring-offset-1 hover:ring-offset-gray-600 rounded transition-all",
+          onClick: !isMaximized ? handleMaximizeClick : void 0,
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "flex flex-1 min-h-0",
+                style: isMaximized ? void 0 : { pointerEvents: "none" },
+                children: !!account && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "webview",
+                  {
+                    className: "h-full w-full",
+                    ref: webviewRef,
+                    nodeintegration: true,
+                    disablewebsecurity: true,
+                    webpreferences: "contextIsolation=false, spellcheck=false",
+                    id: `PlayAbWebView-${account}`,
+                    partition: `persist:${account.toLowerCase()}`,
+                    src: srcUrl,
+                    preload: `file://${window.__preload.replace(/\/$/, "")}/play-ab.js`
+                  },
+                  `${account}-${reload}`
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-2 bg-black/70 flex-shrink-0", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-white font-sm truncate", children: [
+                account,
+                " #",
+                webviewId
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1 flex-shrink-0 ml-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: handleMaximizeClick,
+                    className: isMaximized ? "px-1.5 py-0.5 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors" : "px-1.5 py-0.5 text-xs bg-gray-500 text-white rounded hover:bg-gray-400 transition-colors",
+                    "aria-label": isMaximized ? `Minimize account ${account}` : `Maximize account ${account}`,
+                    children: isMaximized ? "✕" : "⛶"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: handleDelete,
+                    className: "px-1.5 py-0.5 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors",
+                    "aria-label": `Delete account ${account}`,
+                    children: "✕"
+                  }
+                )
+              ] })
+            ] })
+          ]
+        }
+      );
     });
     class LogsStoreService {
       // Only initialize logs when needed (lazy)
@@ -44838,6 +44886,10 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         handleStartAll
       } = useMain();
       const [showLogsOnAccount, setShowLogs] = reactExports.useState("");
+      const [maximizedBuild, setMaximizedBuild] = reactExports.useState(null);
+      const handleMaximize = reactExports.useCallback((build) => {
+        setMaximizedBuild((prev) => prev === build ? null : build);
+      }, []);
       const tableCols = [
         {
           name: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "cursor-pointer", onClick: handleStartAll, children: "AppBuild" }),
@@ -44944,16 +44996,25 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
         ) }),
         showLogsOnAccount && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "middle-wrap overflow-scroll", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FullLogs, { account: showLogsOnAccount, onClose: () => setShowLogs("") }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap flex-1 p-2 flex gap-2 flex-col bg-gray-600", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-4 gap-2 overflow-auto", children: Array.from(selectedUserBuilds).map((build) => {
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap flex-1 p-2 flex gap-2 flex-col bg-gray-600 relative", children: [
+          !maximizedBuild && /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-6 gap-2 overflow-auto", children: Array.from(selectedUserBuilds).map((build) => {
             console.log("build-------------------------------------", build);
-            return /* @__PURE__ */ jsxRuntimeExports.jsx(Webview, { account: build, onDelete: handleDeleteUser }, build);
+            return /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Webview,
+              {
+                account: build,
+                onDelete: handleDeleteUser,
+                onMaximize: handleMaximize,
+                isMaximized: maximizedBuild === build
+              },
+              build
+            );
           }) })
         ] })
       ] });
     }
-    const version = "1.0.190";
+    const version = "1.0.191";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
