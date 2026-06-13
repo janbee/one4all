@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-BsGeJ5Da.js"(exports, module) {
+  "assets/index-CGcCgnZD.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -739,7 +739,7 @@ var require_index_001 = __commonJS({
       react_production.useTransition = function() {
         return ReactSharedInternals.H.useTransition();
       };
-      react_production.version = "19.2.7";
+      react_production.version = "19.2.6";
       return react_production;
     }
     var hasRequiredReact;
@@ -897,7 +897,7 @@ var require_index_001 = __commonJS({
       reactDom_production.useFormStatus = function() {
         return ReactSharedInternals.H.useHostTransitionStatus();
       };
-      reactDom_production.version = "19.2.7";
+      reactDom_production.version = "19.2.6";
       return reactDom_production;
     }
     var hasRequiredReactDom;
@@ -12341,12 +12341,12 @@ var require_index_001 = __commonJS({
         }
       };
       var isomorphicReactPackageVersion$jscomp$inline_1840 = React2.version;
-      if ("19.2.7" !== isomorphicReactPackageVersion$jscomp$inline_1840)
+      if ("19.2.6" !== isomorphicReactPackageVersion$jscomp$inline_1840)
         throw Error(
           formatProdErrorMessage(
             527,
             isomorphicReactPackageVersion$jscomp$inline_1840,
-            "19.2.7"
+            "19.2.6"
           )
         );
       ReactDOMSharedInternals.findDOMNode = function(componentOrElement) {
@@ -12364,10 +12364,10 @@ var require_index_001 = __commonJS({
       };
       var internals$jscomp$inline_2347 = {
         bundleType: 0,
-        version: "19.2.7",
+        version: "19.2.6",
         rendererPackageName: "react-dom",
         currentDispatcherRef: ReactSharedInternals,
-        reconcilerVersion: "19.2.7"
+        reconcilerVersion: "19.2.6"
       };
       if ("undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__) {
         var hook$jscomp$inline_2348 = __REACT_DEVTOOLS_GLOBAL_HOOK__;
@@ -12434,7 +12434,7 @@ var require_index_001 = __commonJS({
         listenToAllSupportedEvents(container);
         return new ReactDOMHydrationRoot(initialChildren);
       };
-      reactDomClient_production.version = "19.2.7";
+      reactDomClient_production.version = "19.2.6";
       return reactDomClient_production;
     }
     var hasRequiredClient;
@@ -12499,7 +12499,7 @@ var require_index_001 = __commonJS({
         }
       return t;
     }
-    function __awaiter$1(thisArg, _arguments, P, generator) {
+    function __awaiter(thisArg, _arguments, P, generator) {
       function adopt(value) {
         return value instanceof P ? value : new P(function(resolve) {
           resolve(value);
@@ -13727,7 +13727,7 @@ var require_index_001 = __commonJS({
     function process$1(asyncIterable, subscriber) {
       var asyncIterable_1, asyncIterable_1_1;
       var e_2, _a;
-      return __awaiter$1(this, void 0, void 0, function() {
+      return __awaiter(this, void 0, void 0, function() {
         var value, e_2_1;
         return __generator(this, function(_b) {
           switch (_b.label) {
@@ -14326,7 +14326,7 @@ var require_index_001 = __commonJS({
        * ```
        *
        * @exampleDescription Error handling
-       * A `FunctionsHttpError` error is returned if your function throws an error, `FunctionsRelayError` if the Supabase Relay has an error processing your function and `FunctionsFetchError` if there is a network error in calling your function. Log the full error object so fields like `name`, `context`, and any structured body aren't hidden.
+       * A `FunctionsHttpError` error is returned if your function throws an error, `FunctionsRelayError` if the Supabase Relay has an error processing your function and `FunctionsFetchError` if there is a network error in calling your function.
        *
        * @example Error handling
        * ```js
@@ -14341,11 +14341,11 @@ var require_index_001 = __commonJS({
        *
        * if (error instanceof FunctionsHttpError) {
        *   const errorMessage = await error.context.json()
-       *   console.error('Function returned an error', errorMessage)
+       *   console.log('Function returned an error', errorMessage)
        * } else if (error instanceof FunctionsRelayError) {
-       *   console.error('Relay error:', error)
+       *   console.log('Relay error:', error.message)
        * } else if (error instanceof FunctionsFetchError) {
-       *   console.error('Fetch error:', error)
+       *   console.log('Fetch error:', error.message)
        * }
        * ```
        *
@@ -14425,7 +14425,7 @@ var require_index_001 = __commonJS({
        * ```
        */
       invoke(functionName_1) {
-        return __awaiter$1(this, arguments, void 0, function* (functionName, options = {}) {
+        return __awaiter(this, arguments, void 0, function* (functionName, options = {}) {
           var _a;
           let timeoutId;
           let timeoutController;
@@ -14631,7 +14631,6 @@ var require_index_001 = __commonJS({
       * {@link https://github.com/supabase/supabase-js/issues/92}
       *
       * @category Database
-      * @subcategory Using modifiers
       */
       throwOnError() {
         this.shouldThrowOnError = true;
@@ -14693,20 +14692,9 @@ var require_index_001 = __commonJS({
         return this;
       }
       /**
-      * Set an HTTP header on this single PostgREST request, overriding any header
-      * with the same name set on the client.
-      *
-      * This is an advanced escape hatch for one-off needs (passing a custom
-      * `Authorization` for a single query, attaching a tracing header, etc.).
-      * Most callers do not need it: configure client-wide headers via the
-      * `headers` option when constructing the client, and authentication via
-      * Supabase Auth.
-      *
-      * @param name - HTTP header name
-      * @param value - HTTP header value
+      * Set an HTTP header for the request.
       *
       * @category Database
-      * @subcategory Using modifiers
       */
       setHeader(name, value) {
         this.headers = new Headers(this.headers);
@@ -14715,7 +14703,6 @@ var require_index_001 = __commonJS({
       }
       /**
       * @category Database
-      * @subcategory Using modifiers
       *
       * Configure retry behavior for this request.
       *
@@ -14753,16 +14740,13 @@ var require_index_001 = __commonJS({
         const executeWithRetry = async () => {
           let attemptCount = 0;
           while (true) {
-            const headers = {};
-            _this.headers.forEach((value, key) => {
-              headers[key] = value;
-            });
-            if (attemptCount > 0) headers["X-Retry-Count"] = String(attemptCount);
+            const requestHeaders = new Headers(_this.headers);
+            if (attemptCount > 0) requestHeaders.set("X-Retry-Count", String(attemptCount));
             let res$1;
             try {
               res$1 = await _fetch(_this.url.toString(), {
                 method: _this.method,
-                headers,
+                headers: requestHeaders,
                 body: JSON.stringify(_this.body, (_, value) => typeof value === "bigint" ? value.toString() : value),
                 signal: _this.signal
               });
@@ -14855,18 +14839,7 @@ ${cause.stack}`;
             if (body === "") ;
             else if (_this2.headers.get("Accept") === "text/csv") data2 = body;
             else if (_this2.headers.get("Accept") && ((_this$headers$get = _this2.headers.get("Accept")) === null || _this$headers$get === void 0 ? void 0 : _this$headers$get.includes("application/vnd.pgrst.plan+text"))) data2 = body;
-            else try {
-              data2 = JSON.parse(body);
-            } catch (_unused) {
-              error = { message: body };
-              data2 = null;
-              if (_this2.shouldThrowOnError) throw new PostgrestError({
-                message: body,
-                details: "",
-                hint: "",
-                code: ""
-              });
-            }
+            else data2 = JSON.parse(body);
           }
           const countHeader = (_this$headers$get2 = _this2.headers.get("Prefer")) === null || _this$headers$get2 === void 0 ? void 0 : _this$headers$get2.match(/count=(exact|planned|estimated)/);
           const contentRange = (_res$headers$get2 = res.headers.get("content-range")) === null || _res$headers$get2 === void 0 ? void 0 : _res$headers$get2.split("/");
@@ -14894,7 +14867,7 @@ ${cause.stack}`;
               status = 200;
               statusText = "OK";
             }
-          } catch (_unused2) {
+          } catch (_unused) {
             if (res.status === 404 && body === "") {
               status = 204;
               statusText = "No Content";
@@ -14918,7 +14891,6 @@ ${cause.stack}`;
       * @deprecated Use overrideTypes<yourType, { merge: false }>() method at the end of your call chain instead
       *
       * @category Database
-      * @subcategory Using modifiers
       */
       returns() {
         return this;
@@ -15022,9 +14994,6 @@ ${cause.stack}`;
       }
     };
     var PostgrestTransformBuilder = class extends PostgrestBuilder {
-      throwOnError() {
-        return super.throwOnError();
-      }
       /**
       * Perform a SELECT on the query result.
       *
@@ -15277,9 +15246,9 @@ ${cause.stack}`;
         return this;
       }
       /**
-      * Limit the query result by `rows`.
+      * Limit the query result by `count`.
       *
-      * @param rows - The maximum number of rows to return
+      * @param count - The maximum number of rows to return
       * @param options - Named parameters
       * @param options.referencedTable - Set this to limit rows of referenced
       * tables instead of the parent table
@@ -15376,9 +15345,9 @@ ${cause.stack}`;
       * }
       * ```
       */
-      limit(rows, { foreignTable, referencedTable = foreignTable } = {}) {
+      limit(count, { foreignTable, referencedTable = foreignTable } = {}) {
         const key = typeof referencedTable === "undefined" ? "limit" : `${referencedTable}.limit`;
-        this.url.searchParams.set(key, `${rows}`);
+        this.url.searchParams.set(key, `${count}`);
         return this;
       }
       /**
@@ -15649,7 +15618,6 @@ ${cause.stack}`;
       * Return `data` as an object in [GeoJSON](https://geojson.org) format.
       *
       * @category Database
-      * @subcategory Using modifiers
       */
       geojson() {
         this.headers.set("Accept", "application/geo+json");
@@ -15766,33 +15734,11 @@ ${cause.stack}`;
         else return this;
       }
       /**
-      * Dry-run this request: execute the query but discard the changes.
+      * Rollback the query.
       *
-      * Server-side, PostgREST runs the query inside a transaction and rolls it back
-      * instead of committing. The response still contains the data that *would* have
-      * been returned — `RETURNING` clauses execute and RLS, triggers, and constraints
-      * are all evaluated — but no row is actually inserted, updated, or deleted.
-      *
-      * This affects only the single request it is chained to. The JS caller has no
-      * handle on the transaction: supabase-js does not group multiple queries into
-      * one transaction. For multi-statement transactional logic, use a database
-      * function (`supabase.rpc(...)`).
-      *
-      * Sets the `Prefer: tx=rollback` header. See PostgREST's docs on transaction
-      * preferences for the underlying mechanism.
+      * `data` will still be returned, but the query is not committed.
       *
       * @category Database
-      * @subcategory Using modifiers
-      *
-      * @example Validate an insert without persisting
-      * ```ts
-      * const { data, error } = await supabase
-      *   .from('countries')
-      *   .insert({ name: 'France' })
-      *   .select()
-      *   .rollback()
-      * // `data` shows what would have been inserted; nothing is saved.
-      * ```
       */
       rollback() {
         this.headers.append("Prefer", "tx=rollback");
@@ -15844,22 +15790,18 @@ ${cause.stack}`;
       * Set the maximum number of rows that can be affected by the query.
       * Only available in PostgREST v13+ and only works with PATCH and DELETE methods.
       *
-      * @param rows - The maximum number of rows that can be affected
+      * @param value - The maximum number of rows that can be affected
       *
       * @category Database
-      * @subcategory Using modifiers
       */
-      maxAffected(rows) {
+      maxAffected(value) {
         this.headers.append("Prefer", "handling=strict");
-        this.headers.append("Prefer", `max-affected=${rows}`);
+        this.headers.append("Prefer", `max-affected=${value}`);
         return this;
       }
     };
     const PostgrestReservedCharsRegexp = /* @__PURE__ */ new RegExp("[,()]");
     var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
-      throwOnError() {
-        return super.throwOnError();
-      }
       /**
       * Match only rows where `column` is equal to `value`.
       *
@@ -15912,9 +15854,6 @@ ${cause.stack}`;
       }
       /**
       * Match only rows where `column` is not equal to `value`.
-      *
-      * This filter does not include rows where `column` is `NULL`. To match null
-      * values, use `.is(column, null)` instead.
       *
       * @param column - The column to filter on
       * @param value - The value to filter with
@@ -17772,33 +17711,6 @@ ${cause.stack}`;
       * }
       * ```
       *
-      * @exampleDescription Handling errors
-      * The most useful field on a Postgres error is usually `hint` — when the database knows the fix, it puts the literal SQL there. For example, a permission-denied error (`code: '42501'`) arrives with a `hint` like `"Grant the required privileges to the current role with: GRANT SELECT ON public.characters TO anon;"`. Log the full `error` object so the hint isn't hidden behind `error.message`.
-      *
-      * @example Handling errors
-      * ```js
-      * const { data, error } = await supabase.from('characters').select()
-      * if (error) {
-      *   // Logs the full error: message, code, details, and hint.
-      *   console.error(error)
-      *   return
-      * }
-      * ```
-      *
-      * @exampleResponse Handling errors
-      * ```json
-      * {
-      *   "error": {
-      *     "code": "42501",
-      *     "details": null,
-      *     "hint": "Grant the required privileges to the current role with: GRANT SELECT ON public.characters TO anon;",
-      *     "message": "permission denied for table characters"
-      *   },
-      *   "status": 401,
-      *   "statusText": "Unauthorized"
-      * }
-      * ```
-      *
       * @example Selecting specific columns
       * ```js
       * const { data, error } = await supabase
@@ -18576,15 +18488,6 @@ ${cause.stack}`;
       * }
       * ```
       *
-      * @exampleDescription Handling errors
-      * `error.hint` from Postgres often contains the actionable fix (e.g. `"Grant the required privileges to the current role with: GRANT INSERT ON public.countries TO anon;"` for a `42501` permission-denied error). Log the full `error` object so it isn't hidden behind `error.message`.
-      *
-      * @example Handling errors
-      * ```js
-      * const { error } = await supabase.from('countries').insert({ id: 1, name: 'Mordor' })
-      * if (error) console.error(error)
-      * ```
-      *
       * @example Create a record and return it
       * ```ts
       * const { data, error } = await supabase
@@ -18794,15 +18697,6 @@ ${cause.stack}`;
       * }
       * ```
       *
-      * @exampleDescription Handling errors
-      * `error.hint` from Postgres often contains the actionable fix (e.g. `"Grant the required privileges to the current role with: GRANT INSERT, UPDATE ON public.instruments TO anon;"` for a `42501` permission-denied error). Log the full `error` object so it isn't hidden behind `error.message`.
-      *
-      * @example Handling errors
-      * ```js
-      * const { data, error } = await supabase.from('instruments').upsert({ id: 1, name: 'piano' }).select()
-      * if (error) console.error(error)
-      * ```
-      *
       * @example Bulk Upsert your data
       * ```ts
       * const { data, error } = await supabase
@@ -18967,15 +18861,6 @@ ${cause.stack}`;
       * }
       * ```
       *
-      * @exampleDescription Handling errors
-      * `error.hint` from Postgres often contains the actionable fix (e.g. `"Grant the required privileges to the current role with: GRANT UPDATE ON public.instruments TO anon;"` for a `42501` permission-denied error). Log the full `error` object so it isn't hidden behind `error.message`.
-      *
-      * @example Handling errors
-      * ```js
-      * const { error } = await supabase.from('instruments').update({ name: 'piano' }).eq('id', 1)
-      * if (error) console.error(error)
-      * ```
-      *
       * @example Update a record and return it
       * ```ts
       * const { data, error } = await supabase
@@ -19133,15 +19018,6 @@ ${cause.stack}`;
       *   "status": 204,
       *   "statusText": "No Content"
       * }
-      * ```
-      *
-      * @exampleDescription Handling errors
-      * `error.hint` from Postgres often contains the actionable fix (e.g. `"Grant the required privileges to the current role with: GRANT DELETE ON public.countries TO anon;"` for a `42501` permission-denied error). Log the full `error` object so it isn't hidden behind `error.message`.
-      *
-      * @example Handling errors
-      * ```js
-      * const { error } = await supabase.from('countries').delete().eq('id', 1)
-      * if (error) console.error(error)
       * ```
       *
       * @example Delete a record and return it
@@ -19688,7 +19564,7 @@ Suggested solution: ${env.workaround}`;
         }
       }
     }
-    const version$5 = "2.108.1";
+    const version$5 = "2.105.4";
     const DEFAULT_VERSION = `realtime-js/${version$5}`;
     const VSN_1_0_0 = "1.0.0";
     const VSN_2_0_0 = "2.0.0";
@@ -22114,23 +21990,8 @@ Suggested solution: ${env.workaround}`;
         }
       }
       /**
-       * Subscribe registers your client with the server.
-       *
-       * The optional `callback` receives a `status` and, on failure, an `err` argument.
-       * Log the full `err` so its `cause`, `name`, and any structured fields aren't hidden
-       * behind `err.message`.
-       *
+       * Subscribe registers your client with the server
        * @category Realtime
-       *
-       * @example Handling errors
-       * ```js
-       * supabase.channel('room1').subscribe((status, err) => {
-       *   if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-       *     // Log the full error: its `cause` often holds the underlying reason.
-       *     console.error(status, err)
-       *   }
-       * })
-       * ```
        */
       subscribe(callback, timeout2 = this.timeout) {
         var _a, _b, _c;
@@ -22408,9 +22269,6 @@ Suggested solution: ${env.workaround}`;
        * This method always uses the REST API endpoint regardless of WebSocket connection state.
        * Useful when you want to guarantee REST delivery or when gradually migrating from implicit REST fallback.
        *
-       * Payloads that are `ArrayBuffer` or `ArrayBufferView` (e.g. `Uint8Array`) are sent as
-       * `application/octet-stream`; all other payloads are JSON-encoded.
-       *
        * @param event The name of the broadcast event
        * @param payload Payload to be sent (required)
        * @param opts Options including timeout
@@ -22423,25 +22281,28 @@ Suggested solution: ${env.workaround}`;
         if (payload === void 0 || payload === null) {
           return Promise.reject(new Error("Payload is required for httpSend()"));
         }
-        const isBinary = payload instanceof ArrayBuffer || ArrayBuffer.isView(payload);
         const headers = {
           apikey: this.socket.apiKey ? this.socket.apiKey : "",
-          "Content-Type": isBinary ? "application/octet-stream" : "application/json"
+          "Content-Type": "application/json"
         };
         if (this.socket.accessTokenValue) {
           headers["Authorization"] = `Bearer ${this.socket.accessTokenValue}`;
         }
-        const url = new URL(this.broadcastEndpointURL);
-        url.pathname += `/${encodeURIComponent(this.subTopic)}/events/${encodeURIComponent(event)}`;
-        if (this.private) {
-          url.searchParams.set("private", "true");
-        }
         const options = {
           method: "POST",
           headers,
-          body: isBinary ? payload : JSON.stringify(payload)
+          body: JSON.stringify({
+            messages: [
+              {
+                topic: this.subTopic,
+                event,
+                payload,
+                private: this.private
+              }
+            ]
+          })
         };
-        const response = await this._fetchWithTimeout(url.toString(), options, (_a = opts.timeout) !== null && _a !== void 0 ? _a : this.timeout);
+        const response = await this._fetchWithTimeout(this.broadcastEndpointURL, options, (_a = opts.timeout) !== null && _a !== void 0 ? _a : this.timeout);
         if (response.status === 202) {
           return { success: true };
         }
@@ -22467,8 +22328,6 @@ Suggested solution: ${env.workaround}`;
        * @remarks
        * - When using REST you don't need to subscribe to the channel
        * - REST calls are only available from 2.37.0 onwards
-       * - If you create a channel only to send a REST broadcast, remove it from
-       *   the client when the send completes
        *
        * @example Send a message via websocket
        * ```js
@@ -22492,13 +22351,9 @@ Suggested solution: ${env.workaround}`;
        *
        * @example Send a message via REST
        * ```js
-       * const channel = supabase.channel('room1')
-       *
-       * try {
-       *   await channel.httpSend('cursor-pos', { x: Math.random(), y: Math.random() })
-       * } finally {
-       *   await supabase.removeChannel(channel)
-       * }
+       * supabase
+       *   .channel('room1')
+       *   .httpSend('cursor-pos', { x: Math.random(), y: Math.random() })
        * ```
        */
       async send(args, opts = {}) {
@@ -24290,27 +24145,13 @@ Option 2: Install and provide the "ws" package:
         }
       }
     };
-    let _Symbol$toStringTag$1;
-    _Symbol$toStringTag$1 = Symbol.toStringTag;
     var StreamDownloadBuilder = class {
       constructor(downloadFn, shouldThrowOnError) {
         this.downloadFn = downloadFn;
         this.shouldThrowOnError = shouldThrowOnError;
-        this[_Symbol$toStringTag$1] = "StreamDownloadBuilder";
-        this.promise = null;
       }
       then(onfulfilled, onrejected) {
-        return this.getPromise().then(onfulfilled, onrejected);
-      }
-      catch(onrejected) {
-        return this.getPromise().catch(onrejected);
-      }
-      finally(onfinally) {
-        return this.getPromise().finally(onfinally);
-      }
-      getPromise() {
-        if (!this.promise) this.promise = this.execute();
-        return this.promise;
+        return this.execute().then(onfulfilled, onrejected);
       }
       async execute() {
         var _this = this;
@@ -24473,21 +24314,6 @@ Option 2: Install and provide the "ws" package:
       *   .upload('public/avatar1.png', decode('base64FileData'), {
       *     contentType: 'image/png'
       *   })
-      * ```
-      *
-      * @example Handling errors
-      * ```js
-      * const { data, error } = await supabase
-      *   .storage
-      *   .from('avatars')
-      *   .upload('public/avatar1.png', avatarFile)
-      *
-      * if (error) {
-      *   // Log the full error so fields like `statusCode` and `error` (the
-      *   // Storage error name, e.g. "Duplicate") aren't hidden behind `error.message`.
-      *   console.error(error)
-      *   return
-      * }
       * ```
       *
       * @remarks
@@ -25337,7 +25163,7 @@ Option 2: Install and provide the "ws" package:
         return query;
       }
     };
-    const version$4 = "2.108.1";
+    const version$4 = "2.105.4";
     const DEFAULT_HEADERS$2 = { "X-Client-Info": `storage-js/${version$4}` };
     var StorageBucketApi = class extends BaseApiClient {
       constructor(url, headers = {}, fetch$1, opts) {
@@ -26692,7 +26518,7 @@ Option 2: Install and provide the "ws" package:
         return new StorageAnalyticsClient(this.url + "/iceberg", this.headers, this.fetch);
       }
     };
-    const version$3 = "2.108.1";
+    const version$3 = "2.105.4";
     const AUTO_REFRESH_TICK_DURATION_MS = 30 * 1e3;
     const AUTO_REFRESH_TICK_THRESHOLD = 3;
     const EXPIRY_MARGIN_MS = AUTO_REFRESH_TICK_THRESHOLD * AUTO_REFRESH_TICK_DURATION_MS;
@@ -26806,14 +26632,6 @@ Option 2: Install and provide the "ws" package:
     }
     function isAuthRetryableFetchError(error) {
       return isAuthError(error) && error.name === "AuthRetryableFetchError";
-    }
-    class AuthRefreshDiscardedError extends CustomAuthError {
-      constructor(message = "Refresh result discarded: session state changed mid-flight (e.g., concurrent signOut)") {
-        super(message, "AuthRefreshDiscardedError", 409, void 0);
-      }
-    }
-    function isAuthRefreshDiscardedError(error) {
-      return isAuthError(error) && error.name === "AuthRefreshDiscardedError";
     }
     class AuthWeakPasswordError extends CustomAuthError {
       constructor(message, status, reasons) {
@@ -27377,7 +27195,7 @@ Option 2: Install and provide the "ws" package:
           session.expires_at = expiresAt(data2.expires_in);
         }
       }
-      const user = (_a = data2.user) !== null && _a !== void 0 ? _a : typeof (data2 === null || data2 === void 0 ? void 0 : data2.id) === "string" ? data2 : null;
+      const user = (_a = data2.user) !== null && _a !== void 0 ? _a : data2;
       return { data: { session, user }, error: null };
     }
     function _sessionResponsePassword(data2) {
@@ -28508,16 +28326,114 @@ Option 2: Install and provide the "ws" package:
         }
       };
     }
-    ({
+    const internals = {
       /**
        * @experimental
        */
       debug: !!(globalThis && supportsLocalStorage() && globalThis.localStorage && globalThis.localStorage.getItem("supabase.gotrue-js.locks.debug") === "true")
-    });
+    };
     class LockAcquireTimeoutError extends Error {
       constructor(message) {
         super(message);
         this.isAcquireTimeout = true;
+      }
+    }
+    class NavigatorLockAcquireTimeoutError extends LockAcquireTimeoutError {
+    }
+    async function navigatorLock(name, acquireTimeout, fn) {
+      if (internals.debug) {
+        console.log("@supabase/gotrue-js: navigatorLock: acquire lock", name, acquireTimeout);
+      }
+      const abortController = new globalThis.AbortController();
+      let acquireTimeoutTimer;
+      if (acquireTimeout > 0) {
+        acquireTimeoutTimer = setTimeout(() => {
+          abortController.abort();
+          if (internals.debug) {
+            console.log("@supabase/gotrue-js: navigatorLock acquire timed out", name);
+          }
+        }, acquireTimeout);
+      }
+      await Promise.resolve();
+      try {
+        return await globalThis.navigator.locks.request(name, acquireTimeout === 0 ? {
+          mode: "exclusive",
+          ifAvailable: true
+        } : {
+          mode: "exclusive",
+          signal: abortController.signal
+        }, async (lock) => {
+          if (lock) {
+            clearTimeout(acquireTimeoutTimer);
+            if (internals.debug) {
+              console.log("@supabase/gotrue-js: navigatorLock: acquired", name, lock.name);
+            }
+            try {
+              return await fn();
+            } finally {
+              if (internals.debug) {
+                console.log("@supabase/gotrue-js: navigatorLock: released", name, lock.name);
+              }
+            }
+          } else {
+            if (acquireTimeout === 0) {
+              if (internals.debug) {
+                console.log("@supabase/gotrue-js: navigatorLock: not immediately available", name);
+              }
+              throw new NavigatorLockAcquireTimeoutError(`Acquiring an exclusive Navigator LockManager lock "${name}" immediately failed`);
+            } else {
+              if (internals.debug) {
+                try {
+                  const result = await globalThis.navigator.locks.query();
+                  console.log("@supabase/gotrue-js: Navigator LockManager state", JSON.stringify(result, null, "  "));
+                } catch (e) {
+                  console.warn("@supabase/gotrue-js: Error when querying Navigator LockManager state", e);
+                }
+              }
+              console.warn("@supabase/gotrue-js: Navigator LockManager returned a null lock when using #request without ifAvailable set to true, it appears this browser is not following the LockManager spec https://developer.mozilla.org/en-US/docs/Web/API/LockManager/request");
+              clearTimeout(acquireTimeoutTimer);
+              return await fn();
+            }
+          }
+        });
+      } catch (e) {
+        if (acquireTimeout > 0) {
+          clearTimeout(acquireTimeoutTimer);
+        }
+        if (e !== null && typeof e === "object" && "name" in e && e.name === "AbortError" && acquireTimeout > 0) {
+          if (abortController.signal.aborted) {
+            if (internals.debug) {
+              console.log("@supabase/gotrue-js: navigatorLock: acquire timeout, recovering by stealing lock", name);
+            }
+            console.warn(`@supabase/gotrue-js: Lock "${name}" was not released within ${acquireTimeout}ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.`);
+            return await Promise.resolve().then(() => globalThis.navigator.locks.request(name, {
+              mode: "exclusive",
+              steal: true
+            }, async (lock) => {
+              if (lock) {
+                if (internals.debug) {
+                  console.log("@supabase/gotrue-js: navigatorLock: recovered (stolen)", name, lock.name);
+                }
+                try {
+                  return await fn();
+                } finally {
+                  if (internals.debug) {
+                    console.log("@supabase/gotrue-js: navigatorLock: released (stolen)", name, lock.name);
+                  }
+                }
+              } else {
+                console.warn("@supabase/gotrue-js: Navigator LockManager returned null lock even with steal: true");
+                return await fn();
+              }
+            }));
+          } else {
+            if (internals.debug) {
+              console.log("@supabase/gotrue-js: navigatorLock: lock was stolen by another request", name);
+            }
+            throw new NavigatorLockAcquireTimeoutError(`Lock "${name}" was released because another request stole it`);
+          }
+        }
+        throw e;
       }
     }
     function polyfillGlobalThis() {
@@ -29311,10 +29227,13 @@ ${suffix}`;
       hasCustomAuthorizationHeader: false,
       throwOnError: false,
       lockAcquireTimeout: 5e3,
-      // 5 seconds. Only used when a custom `lock` is supplied. TODO(v3): remove.
+      // 5 seconds
       skipAutoInitialize: false,
       experimental: {}
     };
+    async function lockNoOp(name, acquireTimeout, fn) {
+      return await fn();
+    }
     const GLOBAL_JWKS = {};
     class GoTrueClient {
       /**
@@ -29357,7 +29276,7 @@ ${suffix}`;
        * ```
        */
       constructor(options) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         this.userStorage = null;
         this.memoryStorage = null;
         this.stateChangeEmitters = /* @__PURE__ */ new Map();
@@ -29365,12 +29284,10 @@ ${suffix}`;
         this.autoRefreshTickTimeout = null;
         this.visibilityChangedCallback = null;
         this.refreshingDeferred = null;
-        this._sessionRemovalEpoch = 0;
         this.initializePromise = null;
         this.detectSessionInUrl = true;
         this.hasCustomAuthorizationHeader = false;
         this.suppressGetSessionWarning = false;
-        this.lock = null;
         this.lockAcquired = false;
         this.pendingInLock = [];
         this.broadcastChannel = null;
@@ -29402,13 +29319,18 @@ ${suffix}`;
         this.url = settings.url;
         this.headers = settings.headers;
         this.fetch = resolveFetch$1(settings.fetch);
+        this.lock = settings.lock || lockNoOp;
         this.detectSessionInUrl = settings.detectSessionInUrl;
         this.flowType = settings.flowType;
         this.hasCustomAuthorizationHeader = settings.hasCustomAuthorizationHeader;
         this.throwOnError = settings.throwOnError;
         this.lockAcquireTimeout = settings.lockAcquireTimeout;
-        if (settings.lock != null) {
+        if (settings.lock) {
           this.lock = settings.lock;
+        } else if (this.persistSession && isBrowser() && ((_c = globalThis === null || globalThis === void 0 ? void 0 : globalThis.navigator) === null || _c === void 0 ? void 0 : _c.locks)) {
+          this.lock = navigatorLock;
+        } else {
+          this.lock = lockNoOp;
         }
         if (!this.jwks) {
           this.jwks = { keys: [] };
@@ -29464,7 +29386,7 @@ ${suffix}`;
           } catch (e) {
             console.error("Failed to create a new BroadcastChannel, multi-tab state changes will not be available", e);
           }
-          (_c = this.broadcastChannel) === null || _c === void 0 ? void 0 : _c.addEventListener("message", async (event) => {
+          (_d = this.broadcastChannel) === null || _d === void 0 ? void 0 : _d.addEventListener("message", async (event) => {
             this._debug("received broadcast notification from other tab or client", event);
             try {
               await this._notifyAllSubscribers(event.data.event, event.data.session, false);
@@ -29506,20 +29428,9 @@ ${suffix}`;
         return this;
       }
       /**
-       * Initialize the auth client by loading the session from storage or
-       * detecting it from the URL after an OAuth, magic-link, or password-recovery
-       * redirect.
-       *
-       * **Most callers do not need to invoke this directly.** The client calls it
-       * automatically during construction, and to react to sign-in events (including
-       * post-redirect events) you should subscribe to `onAuthStateChange` rather
-       * than awaiting `initialize()`.
-       *
-       * You only need to call it manually when you have opted out of the automatic
-       * call by passing `skipAutoInitialize: true` — for example, in an SSR context
-       * where you need to control initialization timing. In that case, awaiting
-       * `initialize()` returns the resolved session result (or any error encountered
-       * while detecting it from the URL).
+       * Initializes the client session either from the url or from storage.
+       * This method is automatically called when instantiating the client, but should also be called
+       * manually when checking for an error from an auth redirect (oauth, magiclink, password recovery, etc).
        *
        * @category Auth
        */
@@ -29528,12 +29439,9 @@ ${suffix}`;
           return await this.initializePromise;
         }
         this.initializePromise = (async () => {
-          if (this.lock != null) {
-            return await this._acquireLock(this.lockAcquireTimeout, async () => {
-              return await this._initialize();
-            });
-          }
-          return await this._initialize();
+          return await this._acquireLock(this.lockAcquireTimeout, async () => {
+            return await this._initialize();
+          });
         })();
         return await this.initializePromise;
       }
@@ -30050,21 +29958,6 @@ ${suffix}`;
        *   password: 'some-password',
        * })
        * ```
-       *
-       * @exampleDescription Handling errors
-       * Log the full `error` object so fields like `code`, `status`, and `name` aren't hidden. The `error.code` (e.g. `'invalid_credentials'`, `'email_not_confirmed'`) is often more useful for branching than `error.message`, and the full object surfaces both.
-       *
-       * @example Handling errors
-       * ```js
-       * const { data, error } = await supabase.auth.signInWithPassword({
-       *   email: 'example@email.com',
-       *   password: 'example-password',
-       * })
-       * if (error) {
-       *   console.error(error)
-       *   return
-       * }
-       * ```
        */
       async signInWithPassword(credentials) {
         try {
@@ -30376,12 +30269,9 @@ ${suffix}`;
        */
       async exchangeCodeForSession(authCode) {
         await this.initializePromise;
-        if (this.lock != null) {
-          return this._acquireLock(this.lockAcquireTimeout, async () => {
-            return this._exchangeCodeForSession(authCode);
-          });
-        }
-        return this._exchangeCodeForSession(authCode);
+        return this._acquireLock(this.lockAcquireTimeout, async () => {
+          return this._exchangeCodeForSession(authCode);
+        });
       }
       /**
        * Signs in a user by verifying a message signed by the user's private key.
@@ -31226,12 +31116,9 @@ ${suffix}`;
        */
       async reauthenticate() {
         await this.initializePromise;
-        if (this.lock != null) {
-          return await this._acquireLock(this.lockAcquireTimeout, async () => {
-            return await this._reauthenticate();
-          });
-        }
-        return await this._reauthenticate();
+        return await this._acquireLock(this.lockAcquireTimeout, async () => {
+          return await this._reauthenticate();
+        });
       }
       async _reauthenticate() {
         try {
@@ -31318,26 +31205,15 @@ ${suffix}`;
           const endpoint = `${this.url}/resend`;
           if ("email" in credentials) {
             const { email, type, options } = credentials;
-            let codeChallenge = null;
-            let codeChallengeMethod = null;
-            if (this.flowType === "pkce") {
-              ;
-              [codeChallenge, codeChallengeMethod] = await getCodeChallengeAndMethod(this.storage, this.storageKey);
-            }
             const { error } = await _request(this.fetch, "POST", endpoint, {
               headers: this.headers,
               body: {
                 email,
                 type,
-                gotrue_meta_security: { captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken },
-                code_challenge: codeChallenge,
-                code_challenge_method: codeChallengeMethod
+                gotrue_meta_security: { captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken }
               },
               redirectTo: options === null || options === void 0 ? void 0 : options.emailRedirectTo
             });
-            if (error) {
-              await removeItemAsync(this.storage, `${this.storageKey}-code-verifier`);
-            }
             return this._returnResult({ data: { user: null, session: null }, error });
           } else if ("phone" in credentials) {
             const { phone, type, options } = credentials;
@@ -31356,7 +31232,6 @@ ${suffix}`;
           }
           throw new AuthInvalidCredentialsError("You must provide either an email or phone number and a type");
         } catch (error) {
-          await removeItemAsync(this.storage, `${this.storageKey}-code-verifier`);
           if (isAuthError(error)) {
             return this._returnResult({ data: { user: null, session: null }, error });
           }
@@ -31383,7 +31258,7 @@ ${suffix}`;
        * - If the session's access token is expired or is about to expire, this method will use the refresh token to refresh the session.
        * - When using in a browser, or you've called `startAutoRefresh()` in your environment (React Native, etc.) this function always returns a valid access token without refreshing the session itself, as this is done in the background. This function returns very fast.
        * - **IMPORTANT SECURITY NOTICE:** If using an insecure storage medium, such as cookies or request headers, the user object returned by this function **must not be trusted**. Always verify the JWT using `getClaims()` or your own JWT verification library to securely establish the user's identity and access. You can also use `getUser()` to fetch the user object directly from the Auth server for this purpose.
-       * - Cross-tab refresh races are handled by the GoTrue server (the rotated token from the first tab is returned to subsequent tabs via the parent-of-active mechanism), so no client-side serialization is needed.
+       * - When using in a browser, this function is synchronized across all tabs using the [LockManager](https://developer.mozilla.org/en-US/docs/Web/API/LockManager) API. In other environments make sure you've defined a proper `lock` property, if necessary, to make sure there are no race conditions while the session is being refreshed.
        *
        * @example Get the session data
        * ```js
@@ -31450,23 +31325,15 @@ ${suffix}`;
        */
       async getSession() {
         await this.initializePromise;
-        if (this.lock != null) {
-          return await this._acquireLock(this.lockAcquireTimeout, async () => {
-            return this._useSession(async (result) => {
-              return result;
-            });
+        const result = await this._acquireLock(this.lockAcquireTimeout, async () => {
+          return this._useSession(async (result2) => {
+            return result2;
           });
-        }
-        return await this._useSession(async (result) => {
-          return result;
         });
+        return result;
       }
       /**
        * Acquires a global lock based on the storage key.
-       *
-       * TODO(v3): remove along with the legacy lock path. Only called when
-       * `this.lock` is non-null (custom lock supplied via constructor). The
-       * default lockless path bypasses this entirely.
        */
       async _acquireLock(acquireTimeout, fn) {
         this._debug("#_acquireLock", "begin", acquireTimeout);
@@ -31513,9 +31380,10 @@ ${suffix}`;
         }
       }
       /**
-       * Use instead of {@link #getSession} inside the library. Loads the session
-       * via `__loadSession` (which may trigger a refresh if the access token is
-       * within the expiry margin) and runs `fn` with the result.
+       * Use instead of {@link #getSession} inside the library. It is
+       * semantically usually what you want, as getting a session involves some
+       * processing afterwards that requires only one client operating on the
+       * session at once across multiple tabs or processes.
        */
       async _useSession(fn) {
         this._debug("#_useSession", "begin");
@@ -31533,7 +31401,7 @@ ${suffix}`;
        */
       async __loadSession() {
         this._debug("#__loadSession()", "begin");
-        if (this.lock != null && !this.lockAcquired) {
+        if (!this.lockAcquired) {
           this._debug("#__loadSession()", "used outside of an acquired lock!", new Error().stack);
         }
         try {
@@ -31661,14 +31529,9 @@ ${suffix}`;
           return await this._getUser(jwt);
         }
         await this.initializePromise;
-        let result;
-        if (this.lock != null) {
-          result = await this._acquireLock(this.lockAcquireTimeout, async () => {
-            return await this._getUser();
-          });
-        } else {
-          result = await this._getUser();
-        }
+        const result = await this._acquireLock(this.lockAcquireTimeout, async () => {
+          return await this._getUser();
+        });
         if (result.data.user) {
           this.suppressGetSessionWarning = true;
         }
@@ -31825,12 +31688,9 @@ ${suffix}`;
        */
       async updateUser(attributes, options = {}) {
         await this.initializePromise;
-        if (this.lock != null) {
-          return await this._acquireLock(this.lockAcquireTimeout, async () => {
-            return await this._updateUser(attributes, options);
-          });
-        }
-        return await this._updateUser(attributes, options);
+        return await this._acquireLock(this.lockAcquireTimeout, async () => {
+          return await this._updateUser(attributes, options);
+        });
       }
       async _updateUser(attributes, options = {}) {
         try {
@@ -31998,12 +31858,9 @@ ${suffix}`;
        */
       async setSession(currentSession) {
         await this.initializePromise;
-        if (this.lock != null) {
-          return await this._acquireLock(this.lockAcquireTimeout, async () => {
-            return await this._setSession(currentSession);
-          });
-        }
-        return await this._setSession(currentSession);
+        return await this._acquireLock(this.lockAcquireTimeout, async () => {
+          return await this._setSession(currentSession);
+        });
       }
       async _setSession(currentSession) {
         try {
@@ -32179,12 +32036,9 @@ ${suffix}`;
        */
       async refreshSession(currentSession) {
         await this.initializePromise;
-        if (this.lock != null) {
-          return await this._acquireLock(this.lockAcquireTimeout, async () => {
-            return await this._refreshSession(currentSession);
-          });
-        }
-        return await this._refreshSession(currentSession);
+        return await this._acquireLock(this.lockAcquireTimeout, async () => {
+          return await this._refreshSession(currentSession);
+        });
       }
       async _refreshSession(currentSession) {
         try {
@@ -32312,7 +32166,7 @@ ${suffix}`;
         if (typeof this.detectSessionInUrl === "function") {
           return this.detectSessionInUrl(new URL(window.location.href), params);
         }
-        return Boolean(params.access_token || params.error || params.error_description || params.error_code);
+        return Boolean(params.access_token || params.error_description);
       }
       /**
        * Checks if the current URL and backing storage contain parameters given by a PKCE flow
@@ -32364,12 +32218,9 @@ ${suffix}`;
        */
       async signOut(options = { scope: "global" }) {
         await this.initializePromise;
-        if (this.lock != null) {
-          return await this._acquireLock(this.lockAcquireTimeout, async () => {
-            return await this._signOut(options);
-          });
-        }
-        return await this._signOut(options);
+        return await this._acquireLock(this.lockAcquireTimeout, async () => {
+          return await this._signOut(options);
+        });
       }
       async _signOut({ scope } = { scope: "global" }) {
         return await this._useSession(async (result) => {
@@ -32401,8 +32252,18 @@ ${suffix}`;
        * - Subscribes to important events occurring on the user's session.
        * - Use on the frontend/client. It is less useful on the server.
        * - Events are emitted across tabs to keep your application's UI up-to-date. Some events can fire very frequently, based on the number of tabs open. Use a quick and efficient callback function, and defer or debounce as many operations as you can to be performed outside of the callback.
-       * - Callbacks can be `async` and can safely call other Supabase auth methods (`getUser`, `setSession`, etc.) from inside the callback.
-       * - Keep callbacks quick. Events are awaited in order, so a slow callback delays subsequent events to subscribers in this tab.
+       * - **Important:** A callback can be an `async` function and it runs synchronously during the processing of the changes causing the event. You can easily create a dead-lock by using `await` on a call to another method of the Supabase library.
+       *   - Avoid using `async` functions as callbacks.
+       *   - Limit the number of `await` calls in `async` callbacks.
+       *   - Do not use other Supabase functions in the callback function. If you must, dispatch the functions once the callback has finished executing. Use this as a quick way to achieve this:
+       *     ```js
+       *     supabase.auth.onAuthStateChange((event, session) => {
+       *       setTimeout(async () => {
+       *         // await on other Supabase function here
+       *         // this runs right after the callback has finished
+       *       }, 0)
+       *     })
+       *     ```
        * - Emitted events:
        *   - `INITIAL_SESSION`
        *     - Emitted right after the Supabase client is constructed and the initial session from storage is loaded.
@@ -32585,13 +32446,9 @@ ${suffix}`;
         this.stateChangeEmitters.set(id, subscription);
         (async () => {
           await this.initializePromise;
-          if (this.lock != null) {
-            await this._acquireLock(this.lockAcquireTimeout, async () => {
-              this._emitInitialSession(id);
-            });
-          } else {
-            await this._emitInitialSession(id);
-          }
+          await this._acquireLock(this.lockAcquireTimeout, async () => {
+            this._emitInitialSession(id);
+          });
         })();
         return { data: { subscription } };
       }
@@ -32928,7 +32785,7 @@ ${suffix}`;
        * @param refreshToken A valid refresh token that was returned on login.
        */
       async _refreshAccessToken(refreshToken) {
-        const debugName = `#_refreshAccessToken()`;
+        const debugName = `#_refreshAccessToken(${refreshToken.substring(0, 5)}...)`;
         this._debug(debugName, "begin");
         try {
           const startedAt = Date.now();
@@ -33016,14 +32873,10 @@ ${suffix}`;
             if (this.autoRefreshToken && currentSession.refresh_token) {
               const { error } = await this._callRefreshToken(currentSession.refresh_token);
               if (error) {
-                if (isAuthRefreshDiscardedError(error)) {
-                  this._debug(debugName, "refresh discarded by commit guard", error);
-                } else {
-                  this._debug(debugName, "refresh failed", error);
-                  if (!isAuthRetryableFetchError(error)) {
-                    this._debug(debugName, "refresh failed with a non-retryable error, removing the session", error);
-                    await this._removeSession();
-                  }
+                console.error(error);
+                if (!isAuthRetryableFetchError(error)) {
+                  this._debug(debugName, "refresh failed with a non-retryable error, removing the session", error);
+                  await this._removeSession();
                 }
               }
             }
@@ -33060,47 +32913,16 @@ ${suffix}`;
         if (this.refreshingDeferred) {
           return this.refreshingDeferred.promise;
         }
-        const debugName = `#_callRefreshToken()`;
+        const debugName = `#_callRefreshToken(${refreshToken.substring(0, 5)}...)`;
         this._debug(debugName, "begin");
         try {
           this.refreshingDeferred = new Deferred();
-          const storedAtStart = await getItemAsync(this.storage, this.storageKey);
           const { data: data2, error } = await this._refreshAccessToken(refreshToken);
           if (error)
             throw error;
           if (!data2.session)
             throw new AuthSessionMissingError();
-          const storedAfter = await getItemAsync(this.storage, this.storageKey);
-          const storageChangedUnderUs = storedAtStart !== null && (storedAfter === null || storedAfter.refresh_token !== storedAtStart.refresh_token);
-          if (storageChangedUnderUs) {
-            this._debug(debugName, "commit guard: storage changed since refresh started, discarding rotated tokens", {
-              // Presence indicators only — never log refresh token fragments,
-              // even partial. Logs may be forwarded to third-party services.
-              startedWith: "present",
-              nowHolds: storedAfter ? "replaced" : "cleared"
-            });
-            const discarded = {
-              data: null,
-              error: new AuthRefreshDiscardedError()
-            };
-            this.refreshingDeferred.resolve(discarded);
-            return discarded;
-          }
-          const epochBeforeSave = this._sessionRemovalEpoch;
           await this._saveSession(data2.session);
-          if (this._sessionRemovalEpoch !== epochBeforeSave) {
-            this._debug(debugName, "commit guard (post-save): _removeSession ran during _saveSession, undoing write");
-            await removeItemAsync(this.storage, this.storageKey);
-            if (this.userStorage) {
-              await removeItemAsync(this.userStorage, this.storageKey + "-user");
-            }
-            const discarded = {
-              data: null,
-              error: new AuthRefreshDiscardedError()
-            };
-            this.refreshingDeferred.resolve(discarded);
-            return discarded;
-          }
           await this._notifyAllSubscribers("TOKEN_REFRESHED", data2.session);
           const result = { data: data2.session, error: null };
           this.refreshingDeferred.resolve(result);
@@ -33174,7 +32996,6 @@ ${suffix}`;
         }
       }
       async _removeSession() {
-        this._sessionRemovalEpoch += 1;
         this._debug("#_removeSession()");
         this.suppressGetSessionWarning = false;
         await removeItemAsync(this.storage, this.storageKey);
@@ -33328,106 +33149,40 @@ ${suffix}`;
         await this._stopAutoRefresh();
       }
       /**
-       * Tears down the client's background work: stops the auto-refresh interval,
-       * removes the `visibilitychange` listener, closes the cross-tab
-       * `BroadcastChannel`, and clears registered `onAuthStateChange` subscribers.
-       *
-       * Call this from cleanup hooks when the client is being replaced before
-       * its JS realm is destroyed. React Strict Mode and HMR are the common
-       * cases. Any in-flight `fetch` calls continue to completion and may still
-       * write to storage; dispose doesn't abort them or erase storage.
-       *
-       * Lifecycle caveat: because in-flight refreshes are not aborted, a
-       * disposed instance can still persist a rotated session to storage after
-       * `dispose()` returns. A subsequent `createClient` against the same
-       * `storageKey` will pick up that session on its next read. If you need
-       * strict isolation between client lifecycles, await any pending auth
-       * operation before calling `dispose()` (or change the `storageKey` for
-       * the replacement client).
-       *
-       * Safe to call repeatedly.
-       *
-       * @category Auth
-       *
-       * @example Cleanup on React unmount
-       * ```ts
-       * useEffect(() => {
-       *   const client = createClient(...)
-       *   return () => { client.auth.dispose() }
-       * }, [])
-       * ```
-       */
-      async dispose() {
-        var _a;
-        this._removeVisibilityChangedCallback();
-        await this._stopAutoRefresh();
-        (_a = this.broadcastChannel) === null || _a === void 0 ? void 0 : _a.close();
-        this.broadcastChannel = null;
-        this.stateChangeEmitters.clear();
-      }
-      /**
        * Runs the auto refresh token tick.
        */
       async _autoRefreshTokenTick() {
         this._debug("#_autoRefreshTokenTick()", "begin");
-        if (this.lock != null) {
-          try {
-            await this._acquireLock(0, async () => {
-              try {
-                const now = Date.now();
-                try {
-                  return await this._useSession(async (result) => {
-                    const { data: { session } } = result;
-                    if (!session || !session.refresh_token || !session.expires_at) {
-                      this._debug("#_autoRefreshTokenTick()", "no session");
-                      return;
-                    }
-                    const expiresInTicks = Math.floor((session.expires_at * 1e3 - now) / AUTO_REFRESH_TICK_DURATION_MS);
-                    this._debug("#_autoRefreshTokenTick()", `access token expires in ${expiresInTicks} ticks, a tick lasts ${AUTO_REFRESH_TICK_DURATION_MS}ms, refresh threshold is ${AUTO_REFRESH_TICK_THRESHOLD} ticks`);
-                    if (expiresInTicks <= AUTO_REFRESH_TICK_THRESHOLD) {
-                      await this._callRefreshToken(session.refresh_token);
-                    }
-                  });
-                } catch (e) {
-                  console.error("Auto refresh tick failed with error. This is likely a transient error.", e);
-                }
-              } finally {
-                this._debug("#_autoRefreshTokenTick()", "end");
-              }
-            });
-          } catch (e) {
-            if (e instanceof LockAcquireTimeoutError) {
-              this._debug("auto refresh token tick lock not available");
-            } else {
-              throw e;
-            }
-          }
-          return;
-        }
-        if (this.refreshingDeferred !== null) {
-          this._debug("#_autoRefreshTokenTick()", "refresh already in flight, skipping");
-          return;
-        }
         try {
-          const now = Date.now();
-          try {
-            await this._useSession(async (result) => {
-              const { data: { session } } = result;
-              if (!session || !session.refresh_token || !session.expires_at) {
-                this._debug("#_autoRefreshTokenTick()", "no session");
-                return;
+          await this._acquireLock(0, async () => {
+            try {
+              const now = Date.now();
+              try {
+                return await this._useSession(async (result) => {
+                  const { data: { session } } = result;
+                  if (!session || !session.refresh_token || !session.expires_at) {
+                    this._debug("#_autoRefreshTokenTick()", "no session");
+                    return;
+                  }
+                  const expiresInTicks = Math.floor((session.expires_at * 1e3 - now) / AUTO_REFRESH_TICK_DURATION_MS);
+                  this._debug("#_autoRefreshTokenTick()", `access token expires in ${expiresInTicks} ticks, a tick lasts ${AUTO_REFRESH_TICK_DURATION_MS}ms, refresh threshold is ${AUTO_REFRESH_TICK_THRESHOLD} ticks`);
+                  if (expiresInTicks <= AUTO_REFRESH_TICK_THRESHOLD) {
+                    await this._callRefreshToken(session.refresh_token);
+                  }
+                });
+              } catch (e) {
+                console.error("Auto refresh tick failed with error. This is likely a transient error.", e);
               }
-              const expiresInTicks = Math.floor((session.expires_at * 1e3 - now) / AUTO_REFRESH_TICK_DURATION_MS);
-              this._debug("#_autoRefreshTokenTick()", `access token expires in ${expiresInTicks} ticks, a tick lasts ${AUTO_REFRESH_TICK_DURATION_MS}ms, refresh threshold is ${AUTO_REFRESH_TICK_THRESHOLD} ticks`);
-              if (expiresInTicks <= AUTO_REFRESH_TICK_THRESHOLD) {
-                await this._callRefreshToken(session.refresh_token);
-              }
-            });
-          } catch (e) {
-            console.error("Auto refresh tick failed with error. This is likely a transient error.", e);
+            } finally {
+              this._debug("#_autoRefreshTokenTick()", "end");
+            }
+          });
+        } catch (e) {
+          if (e instanceof LockAcquireTimeoutError) {
+            this._debug("auto refresh token tick lock not available");
+          } else {
+            throw e;
           }
-        } finally {
-          this._debug("#_autoRefreshTokenTick()", "end");
         }
       }
       /**
@@ -33469,21 +33224,13 @@ ${suffix}`;
           }
           if (!calledFromInitialize) {
             await this.initializePromise;
-            if (this.lock != null) {
-              await this._acquireLock(this.lockAcquireTimeout, async () => {
-                if (document.visibilityState !== "visible") {
-                  this._debug(methodName, "acquired the lock to recover the session, but the browser visibilityState is no longer visible, aborting");
-                  return;
-                }
-                await this._recoverAndRefresh();
-              });
-            } else {
+            await this._acquireLock(this.lockAcquireTimeout, async () => {
               if (document.visibilityState !== "visible") {
-                this._debug(methodName, "visibilityState is no longer visible, skipping recovery");
+                this._debug(methodName, "acquired the lock to recover the session, but the browser visibilityState is no longer visible, aborting");
                 return;
               }
               await this._recoverAndRefresh();
-            }
+            });
           }
         } else if (document.visibilityState === "hidden") {
           if (this.autoRefreshToken) {
@@ -33572,7 +33319,7 @@ ${suffix}`;
         }
       }
       async _verify(params) {
-        const run = async () => {
+        return this._acquireLock(this.lockAcquireTimeout, async () => {
           try {
             return await this._useSession(async (result) => {
               var _a;
@@ -33601,14 +33348,10 @@ ${suffix}`;
             }
             throw error;
           }
-        };
-        if (this.lock != null) {
-          return this._acquireLock(this.lockAcquireTimeout, run);
-        }
-        return run();
+        });
       }
       async _challenge(params) {
-        const run = async () => {
+        return this._acquireLock(this.lockAcquireTimeout, async () => {
           try {
             return await this._useSession(async (result) => {
               var _a;
@@ -33647,11 +33390,7 @@ ${suffix}`;
             }
             throw error;
           }
-        };
-        if (this.lock != null) {
-          return this._acquireLock(this.lockAcquireTimeout, run);
-        }
-        return run();
+        });
       }
       /**
        * {@see GoTrueMFAApi#challengeAndVerify}
@@ -34007,11 +33746,7 @@ ${suffix}`;
           }
           const { header, payload, signature, raw: { header: rawHeader, payload: rawPayload } } = decodeJWT(token);
           if (!(options === null || options === void 0 ? void 0 : options.allowExpired)) {
-            try {
-              validateExp(payload.exp);
-            } catch (e) {
-              throw new AuthInvalidJwtError(e instanceof Error ? e.message : "JWT validation failed");
-            }
+            validateExp(payload.exp);
           }
           const signingKey = !header.alg || header.alg.startsWith("HS") || !header.kid || !("crypto" in globalThis && "subtle" in globalThis.crypto) ? null : await this.fetchJwk(header.kid, (options === null || options === void 0 ? void 0 : options.keys) ? { keys: options.keys } : options === null || options === void 0 ? void 0 : options.jwks);
           if (!signingKey) {
@@ -34368,23 +34103,13 @@ ${suffix}`;
     }
     GoTrueClient.nextInstanceID = {};
     const AuthClient = GoTrueClient;
-    const version$2 = "2.108.1";
+    const version$2 = "2.105.4";
     let JS_ENV = "";
-    let JS_RUNTIME_VERSION;
-    if (typeof Deno !== "undefined") {
-      var _Deno$version;
-      JS_ENV = "deno";
-      JS_RUNTIME_VERSION = (_Deno$version = Deno.version) === null || _Deno$version === void 0 ? void 0 : _Deno$version.deno;
-    } else if (typeof document !== "undefined") JS_ENV = "web";
+    if (typeof Deno !== "undefined") JS_ENV = "deno";
+    else if (typeof document !== "undefined") JS_ENV = "web";
     else if (typeof navigator !== "undefined" && navigator.product === "ReactNative") JS_ENV = "react-native";
-    else {
-      var _process$version;
-      JS_ENV = "node";
-      JS_RUNTIME_VERSION = typeof process !== "undefined" ? (_process$version = process.version) === null || _process$version === void 0 ? void 0 : _process$version.replace(/^v/, "") : void 0;
-    }
-    const _runtimeMeta = [`runtime=${JS_ENV}`];
-    if (JS_RUNTIME_VERSION) _runtimeMeta.push(`runtime-version=${JS_RUNTIME_VERSION}`);
-    const DEFAULT_HEADERS = { "X-Client-Info": `supabase-js/${version$2}; ${_runtimeMeta.join("; ")}` };
+    else JS_ENV = "node";
+    const DEFAULT_HEADERS = { "X-Client-Info": `supabase-js-${JS_ENV}/${version$2}` };
     const DEFAULT_GLOBAL_OPTIONS = { headers: DEFAULT_HEADERS };
     const DEFAULT_DB_OPTIONS = { schema: "public" };
     const DEFAULT_AUTH_OPTIONS = {
@@ -34394,127 +34119,6 @@ ${suffix}`;
       flowType: "implicit"
     };
     const DEFAULT_REALTIME_OPTIONS = {};
-    const DEFAULT_TRACE_PROPAGATION_OPTIONS = {
-      enabled: false,
-      respectSamplingDecision: true
-    };
-    function __awaiter(thisArg, _arguments, P, generator) {
-      function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-          resolve(value);
-        });
-      }
-      return new (P || (P = Promise))(function(resolve, reject) {
-        function fulfilled(value) {
-          try {
-            step(generator.next(value));
-          } catch (e) {
-            reject(e);
-          }
-        }
-        function rejected(value) {
-          try {
-            step(generator["throw"](value));
-          } catch (e) {
-            reject(e);
-          }
-        }
-        function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-        }
-        step((generator = generator.apply(thisArg, [])).next());
-      });
-    }
-    let otelModulePromise = null;
-    const OTEL_PKG = "@opentelemetry/api";
-    function loadOtel() {
-      if (otelModulePromise === null) otelModulePromise = import(
-        /* webpackIgnore: true */
-        /* turbopackIgnore: true */
-        /* @vite-ignore */
-        OTEL_PKG
-      ).catch(() => null);
-      return otelModulePromise;
-    }
-    function extractTraceContext() {
-      return __awaiter(this, void 0, void 0, function* () {
-        try {
-          const otel = yield loadOtel();
-          if (!otel || !otel.propagation || !otel.context) return null;
-          const carrier = {};
-          otel.propagation.inject(otel.context.active(), carrier);
-          const traceparent = carrier["traceparent"];
-          if (!traceparent) return null;
-          return {
-            traceparent,
-            tracestate: carrier["tracestate"],
-            baggage: carrier["baggage"]
-          };
-        } catch (_a) {
-          return null;
-        }
-      });
-    }
-    function parseTraceParent(traceparent) {
-      if (!traceparent || typeof traceparent !== "string") return null;
-      const parts = traceparent.split("-");
-      if (parts.length !== 4) return null;
-      const [version$12, traceId, parentId, traceFlags] = parts;
-      if (version$12.length !== 2 || traceId.length !== 32 || parentId.length !== 16 || traceFlags.length !== 2) return null;
-      const hexRegex = /^[0-9a-f]+$/i;
-      if (!hexRegex.test(version$12) || !hexRegex.test(traceId) || !hexRegex.test(parentId) || !hexRegex.test(traceFlags)) return null;
-      if (traceId === "00000000000000000000000000000000" || parentId === "0000000000000000") return null;
-      return {
-        version: version$12,
-        traceId,
-        parentId,
-        traceFlags,
-        isSampled: (parseInt(traceFlags, 16) & 1) === 1
-      };
-    }
-    function shouldPropagateToTarget(targetUrl, targets) {
-      if (!targetUrl || !targets || targets.length === 0) return false;
-      let url;
-      if (targetUrl instanceof URL) url = targetUrl;
-      else try {
-        url = new URL(targetUrl);
-      } catch (error) {
-        return false;
-      }
-      for (const target of targets) try {
-        if (typeof target === "string") {
-          if (matchStringTarget(url.hostname, target)) return true;
-        } else if (target instanceof RegExp) {
-          if (target.test(url.hostname)) return true;
-        } else if (typeof target === "function") {
-          if (target(url)) return true;
-        }
-      } catch (error) {
-        continue;
-      }
-      return false;
-    }
-    function matchStringTarget(hostname, target) {
-      if (target === hostname) return true;
-      if (target.startsWith("*.")) {
-        const domain = target.slice(2);
-        if (hostname.endsWith(domain)) {
-          if (hostname === domain || hostname.endsWith("." + domain)) return true;
-        }
-      }
-      return false;
-    }
-    function getDefaultPropagationTargets(supabaseUrl2) {
-      const targets = [];
-      try {
-        const url = new URL(supabaseUrl2);
-        targets.push(url.hostname);
-      } catch (error) {
-      }
-      targets.push("*.supabase.co", "*.supabase.in");
-      targets.push("localhost", "127.0.0.1", "[::1]");
-      return targets;
-    }
     function _typeof(o) {
       "@babel/helpers - typeof";
       return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o$1) {
@@ -34573,61 +34177,31 @@ ${suffix}`;
     const resolveHeadersConstructor = () => {
       return Headers;
     };
-    const fetchWithAuth = (supabaseKey, supabaseUrl2, getAccessToken, customFetch, tracePropagationOptions) => {
+    const fetchWithAuth = (supabaseKey, getAccessToken, customFetch) => {
       const fetch$1 = resolveFetch(customFetch);
       const HeadersConstructor = resolveHeadersConstructor();
-      const traceEnabled = (tracePropagationOptions === null || tracePropagationOptions === void 0 ? void 0 : tracePropagationOptions.enabled) === true;
-      const respectSampling = (tracePropagationOptions === null || tracePropagationOptions === void 0 ? void 0 : tracePropagationOptions.respectSamplingDecision) !== false;
-      const traceTargets = traceEnabled ? getDefaultPropagationTargets(supabaseUrl2) : null;
       return async (input, init) => {
         var _await$getAccessToken;
         const accessToken = (_await$getAccessToken = await getAccessToken()) !== null && _await$getAccessToken !== void 0 ? _await$getAccessToken : supabaseKey;
         let headers = new HeadersConstructor(init === null || init === void 0 ? void 0 : init.headers);
         if (!headers.has("apikey")) headers.set("apikey", supabaseKey);
         if (!headers.has("Authorization")) headers.set("Authorization", `Bearer ${accessToken}`);
-        if (traceTargets) {
-          const traceHeaders = await getTraceHeaders(input, traceTargets, respectSampling);
-          if (traceHeaders) {
-            if (traceHeaders.traceparent && !headers.has("traceparent")) headers.set("traceparent", traceHeaders.traceparent);
-            if (traceHeaders.tracestate && !headers.has("tracestate")) headers.set("tracestate", traceHeaders.tracestate);
-            if (traceHeaders.baggage && !headers.has("baggage")) headers.set("baggage", traceHeaders.baggage);
-          }
-        }
         return fetch$1(input, _objectSpread2(_objectSpread2({}, init), {}, { headers }));
       };
     };
-    async function getTraceHeaders(input, targets, respectSampling) {
-      if (!shouldPropagateToTarget(typeof input === "string" ? input : input instanceof URL ? input : input.url, targets)) return null;
-      const traceContext = await extractTraceContext();
-      if (!traceContext || !traceContext.traceparent) return null;
-      if (respectSampling) {
-        const parsed = parseTraceParent(traceContext.traceparent);
-        if (parsed && !parsed.isSampled) return null;
-      }
-      return traceContext;
-    }
-    function normalizeTracePropagation(value) {
-      return typeof value === "boolean" ? { enabled: value } : value;
-    }
     function ensureTrailingSlash(url) {
       return url.endsWith("/") ? url : url + "/";
     }
     function applySettingDefaults(options, defaults) {
-      var _DEFAULT_GLOBAL_OPTIO, _globalOptions$header, _ref, _tracePropagationOpti, _ref2, _tracePropagationOpti2;
+      var _DEFAULT_GLOBAL_OPTIO, _globalOptions$header;
       const { db: dbOptions, auth: authOptions, realtime: realtimeOptions, global: globalOptions } = options;
       const { db: DEFAULT_DB_OPTIONS$1, auth: DEFAULT_AUTH_OPTIONS$1, realtime: DEFAULT_REALTIME_OPTIONS$1, global: DEFAULT_GLOBAL_OPTIONS$1 } = defaults;
-      const tracePropagationOptions = normalizeTracePropagation(options.tracePropagation);
-      const DEFAULT_TRACE_PROPAGATION_OPTIONS$1 = normalizeTracePropagation(defaults.tracePropagation);
       const result = {
         db: _objectSpread2(_objectSpread2({}, DEFAULT_DB_OPTIONS$1), dbOptions),
         auth: _objectSpread2(_objectSpread2({}, DEFAULT_AUTH_OPTIONS$1), authOptions),
         realtime: _objectSpread2(_objectSpread2({}, DEFAULT_REALTIME_OPTIONS$1), realtimeOptions),
         storage: {},
         global: _objectSpread2(_objectSpread2(_objectSpread2({}, DEFAULT_GLOBAL_OPTIONS$1), globalOptions), {}, { headers: _objectSpread2(_objectSpread2({}, (_DEFAULT_GLOBAL_OPTIO = DEFAULT_GLOBAL_OPTIONS$1 === null || DEFAULT_GLOBAL_OPTIONS$1 === void 0 ? void 0 : DEFAULT_GLOBAL_OPTIONS$1.headers) !== null && _DEFAULT_GLOBAL_OPTIO !== void 0 ? _DEFAULT_GLOBAL_OPTIO : {}), (_globalOptions$header = globalOptions === null || globalOptions === void 0 ? void 0 : globalOptions.headers) !== null && _globalOptions$header !== void 0 ? _globalOptions$header : {}) }),
-        tracePropagation: {
-          enabled: (_ref = (_tracePropagationOpti = tracePropagationOptions === null || tracePropagationOptions === void 0 ? void 0 : tracePropagationOptions.enabled) !== null && _tracePropagationOpti !== void 0 ? _tracePropagationOpti : DEFAULT_TRACE_PROPAGATION_OPTIONS$1 === null || DEFAULT_TRACE_PROPAGATION_OPTIONS$1 === void 0 ? void 0 : DEFAULT_TRACE_PROPAGATION_OPTIONS$1.enabled) !== null && _ref !== void 0 ? _ref : false,
-          respectSamplingDecision: (_ref2 = (_tracePropagationOpti2 = tracePropagationOptions === null || tracePropagationOptions === void 0 ? void 0 : tracePropagationOptions.respectSamplingDecision) !== null && _tracePropagationOpti2 !== void 0 ? _tracePropagationOpti2 : DEFAULT_TRACE_PROPAGATION_OPTIONS$1 === null || DEFAULT_TRACE_PROPAGATION_OPTIONS$1 === void 0 ? void 0 : DEFAULT_TRACE_PROPAGATION_OPTIONS$1.respectSamplingDecision) !== null && _ref2 !== void 0 ? _ref2 : true
-        },
         accessToken: async () => ""
       };
       if (options.accessToken) result.accessToken = options.accessToken;
@@ -34836,30 +34410,6 @@ ${suffix}`;
       *
       * const { data } = await supabase.from('profiles').select('*')
       * ```
-      *
-      * @exampleDescription With OpenTelemetry tracing
-      * Opt in to W3C trace context propagation so the `trace_id` from your
-      * client-side spans is attached to Supabase requests and appears in API
-      * Gateway and Edge Function logs. Requires `@opentelemetry/api` to be
-      * installed in your application. See [Tracing with the JS SDK](https://supabase.com/docs/guides/telemetry/client-side-tracing).
-      *
-      * @example With OpenTelemetry tracing
-      * ```ts
-      * import { createClient } from '@supabase/supabase-js'
-      * import { trace } from '@opentelemetry/api'
-      *
-      * const supabase = createClient('https://xyzcompany.supabase.co', 'your-publishable-key', {
-      *   tracePropagation: true,
-      * })
-      *
-      * const tracer = trace.getTracer('my-app')
-      *
-      * await tracer.startActiveSpan('fetch-users', async (span) => {
-      *   // Outgoing request carries the active trace context.
-      *   const { data, error } = await supabase.from('users').select('*')
-      *   span.end()
-      * })
-      * ```
       */
       constructor(supabaseUrl2, supabaseKey, options) {
         var _settings$auth$storag, _settings$global$head;
@@ -34877,11 +34427,9 @@ ${suffix}`;
           db: DEFAULT_DB_OPTIONS,
           realtime: DEFAULT_REALTIME_OPTIONS,
           auth: _objectSpread2(_objectSpread2({}, DEFAULT_AUTH_OPTIONS), {}, { storageKey: defaultStorageKey }),
-          global: DEFAULT_GLOBAL_OPTIONS,
-          tracePropagation: DEFAULT_TRACE_PROPAGATION_OPTIONS
+          global: DEFAULT_GLOBAL_OPTIONS
         };
         const settings = applySettingDefaults(options !== null && options !== void 0 ? options : {}, DEFAULTS);
-        this.settings = settings;
         this.storageKey = (_settings$auth$storag = settings.auth.storageKey) !== null && _settings$auth$storag !== void 0 ? _settings$auth$storag : "";
         this.headers = (_settings$global$head = settings.global.headers) !== null && _settings$global$head !== void 0 ? _settings$global$head : {};
         if (!settings.accessToken) {
@@ -34893,7 +34441,7 @@ ${suffix}`;
             throw new Error(`@supabase/supabase-js: Supabase Client is configured with the accessToken option, accessing supabase.auth.${String(prop)} is not possible`);
           } });
         }
-        this.fetch = fetchWithAuth(supabaseKey, supabaseUrl2, this._getAccessToken.bind(this), settings.global.fetch, settings.tracePropagation);
+        this.fetch = fetchWithAuth(supabaseKey, this._getAccessToken.bind(this), settings.global.fetch);
         this.realtime = this._initRealtimeClient(_objectSpread2({
           headers: this.headers,
           accessToken: this._getAccessToken.bind(this),
@@ -35276,7 +34824,7 @@ ${suffix}`;
         !(function(t, e) {
           module2.exports = e();
         })(dayjs_min, (function() {
-          var t = 1e3, e = 6e4, n = 36e5, r2 = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", c = "month", f = "quarter", h = "year", d = "date", l = "Invalid Date", $ = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|YYYY|YY|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t2) {
+          var t = 1e3, e = 6e4, n = 36e5, r2 = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", c = "month", f = "quarter", h = "year", d = "date", l = "Invalid Date", $ = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t2) {
             var e2 = ["th", "st", "nd", "rd"], n2 = t2 % 100;
             return "[" + t2 + (e2[(n2 - 20) % 10] || e2[n2] || e2[0]) + "]";
           } }, m = function(t2, e2, n2) {
@@ -35535,9 +35083,9 @@ ${suffix}`;
             }, m2.toString = function() {
               return this.$d.toUTCString();
             }, M2;
-          })(), Y = _.prototype;
-          return O.prototype = Y, [["$ms", r2], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", c], ["$y", h], ["$D", d]].forEach((function(t2) {
-            Y[t2[1]] = function(e2) {
+          })(), k = _.prototype;
+          return O.prototype = k, [["$ms", r2], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", c], ["$y", h], ["$D", d]].forEach((function(t2) {
+            k[t2[1]] = function(e2) {
               return this.$g(e2, t2[0], t2[1]);
             };
           })), O.extend = function(t2, e2) {
@@ -35786,7 +35334,7 @@ ${suffix}`;
         !(function(t, s) {
           module2.exports = s();
         })(duration$1, (function() {
-          var t, s, n = 1e3, i = 6e4, e = 36e5, r2 = 864e5, o = 31536e6, u = 2628e6, d = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/, a = /\[([^\]]+)]|YYYY|YY|Y|M{1,2}|D{1,2}|H{1,2}|m{1,2}|s{1,2}|SSS/g, h = { years: o, months: u, days: r2, hours: e, minutes: i, seconds: n, milliseconds: 1, weeks: 6048e5 }, c = function(t2) {
+          var t, s, n = 1e3, i = 6e4, e = 36e5, r2 = 864e5, o = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, u = 31536e6, d = 2628e6, a = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/, h = { years: u, months: d, days: r2, hours: e, minutes: i, seconds: n, milliseconds: 1, weeks: 6048e5 }, c = function(t2) {
             return t2 instanceof g;
           }, f = function(t2, s2, n2) {
             return new g(t2, n2, s2.$l);
@@ -35809,7 +35357,7 @@ ${suffix}`;
                 i2.$d[m(s3)] = t2[s3];
               })), this.calMilliseconds(), this;
               if ("string" == typeof t2) {
-                var e2 = t2.match(d);
+                var e2 = t2.match(a);
                 if (e2) {
                   var r3 = e2.slice(2).map((function(t3) {
                     return null != t3 ? Number(t3) : 0;
@@ -35827,7 +35375,7 @@ ${suffix}`;
               }), 0);
             }, y2.parseFromMilliseconds = function() {
               var t2 = this.$ms;
-              this.$d.years = $(t2 / o), t2 %= o, this.$d.months = $(t2 / u), t2 %= u, this.$d.days = $(t2 / r2), t2 %= r2, this.$d.hours = $(t2 / e), t2 %= e, this.$d.minutes = $(t2 / i), t2 %= i, this.$d.seconds = $(t2 / n), t2 %= n, this.$d.milliseconds = t2;
+              this.$d.years = $(t2 / u), t2 %= u, this.$d.months = $(t2 / d), t2 %= d, this.$d.days = $(t2 / r2), t2 %= r2, this.$d.hours = $(t2 / e), t2 %= e, this.$d.minutes = $(t2 / i), t2 %= i, this.$d.seconds = $(t2 / n), t2 %= n, this.$d.milliseconds = t2;
             }, y2.toISOString = function() {
               var t2 = v(this.$d.years, "Y"), s2 = v(this.$d.months, "M"), n2 = +this.$d.days || 0;
               this.$d.weeks && (n2 += 7 * this.$d.weeks);
@@ -35839,7 +35387,7 @@ ${suffix}`;
               return this.toISOString();
             }, y2.format = function(t2) {
               var n2 = t2 || "YYYY-MM-DDTHH:mm:ss", i2 = { Y: this.$d.years, YY: s.s(this.$d.years, 2, "0"), YYYY: s.s(this.$d.years, 4, "0"), M: this.$d.months, MM: s.s(this.$d.months, 2, "0"), D: this.$d.days, DD: s.s(this.$d.days, 2, "0"), H: this.$d.hours, HH: s.s(this.$d.hours, 2, "0"), m: this.$d.minutes, mm: s.s(this.$d.minutes, 2, "0"), s: this.$d.seconds, ss: s.s(this.$d.seconds, 2, "0"), SSS: s.s(this.$d.milliseconds, 3, "0") };
-              return n2.replace(a, (function(t3, s2) {
+              return n2.replace(o, (function(t3, s2) {
                 return s2 || String(i2[t3]);
               }));
             }, y2.as = function(t2) {
@@ -42748,7 +42296,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       }, {});
     }
     const $Store = new StoreService();
-    function useWebview(account) {
+    function useWebview(account, isMaximized = false) {
       const webviewRef = reactExports.useRef(null);
       const isTerminatedRef = reactExports.useRef(false);
       const [isDone, setIsDone] = reactExports.useState(false);
@@ -42798,7 +42346,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             isTerminatedRef.current = false;
             const webContentsId = webview.getWebContentsId();
             setWebviewId(webContentsId);
-            webview.setZoomFactor(0.1);
+            webview.setZoomFactor(isMaximized ? 1 : 0.1);
             const playAbFromGH = await window.api?.getPlayAbFromGH();
             if (isTerminatedRef.current) return false;
             $Store.actionStatus$[account].next({
@@ -42865,7 +42413,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             if (isTerminatedRef.current) return false;
             const user = res.data?.[0];
             if (!user) {
-              const remaining = JSON.parse(res.error?.hint ?? "{}");
+              const remaining = JSON.parse(res?.error?.hint ?? "{}");
               inter = setInterval(() => {
                 $Store.actionStatus$[account].next({
                   Action: res.error?.details,
@@ -42955,6 +42503,15 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           debouncedMethod?.cancel();
         };
       }, [reload]);
+      reactExports.useEffect(() => {
+        const webview = webviewRef.current;
+        if (!webview) return;
+        try {
+          webview.setZoomFactor(isMaximized ? 1 : 0.1);
+        } catch (e) {
+          console.warn("Failed to adjust webview zoom:", e);
+        }
+      }, [isMaximized]);
       const handleWebviewDestroy = reactExports.useCallback(async (webviewId2) => {
         await window.api?.webviewDestroy(webviewId2, account);
       }, []);
@@ -43013,68 +42570,100 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         account,
         handleWebviewDestroy,
         webviewId,
-        isDone
+        isDone,
+        isMaximized
       };
     }
     const Webview = reactExports.memo(function Webview2({
       account,
-      onDelete
+      onDelete,
+      onMaximize,
+      isMaximized = false
     }) {
-      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account);
+      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account, isMaximized);
       const handleDelete = reactExports.useCallback(async () => {
         if (onDelete) {
           await handleWebviewDestroy(webviewId);
           onDelete(account);
         }
       }, [account, onDelete, webviewId]);
+      const handleMaximizeClick = reactExports.useCallback(
+        (e) => {
+          e.stopPropagation();
+          onMaximize?.(account);
+        },
+        [account, onMaximize]
+      );
       if (isDone) {
         handleWebviewDestroy(webviewId).then(() => {
           onDelete(account);
         });
       }
+      const srcUrl = reactExports.useMemo(
+        () => `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
+        [account, reload]
+      );
       console.log(
         "Webview partition-------------------------------------",
         `partition=persist:${account}`
       );
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2 relative", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "flex justify-between items-center p-2 absolute bottom-0 left-0 right-0 bg-black/70",
-            children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: isMaximized ? "absolute inset-0 z-50 flex flex-col bg-gray-600" : "flex flex-col gap-2 relative aspect-[9/13] cursor-pointer hover:ring-2 hover:ring-blue-400 hover:ring-offset-1 hover:ring-offset-gray-600 rounded transition-all",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "flex flex-1 min-h-0",
+                style: isMaximized ? void 0 : { pointerEvents: "none" },
+                children: !!account && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "webview",
+                  {
+                    className: "h-full w-full",
+                    ref: webviewRef,
+                    nodeintegration: true,
+                    disablewebsecurity: true,
+                    webpreferences: "contextIsolation=false, spellcheck=false",
+                    id: `PlayAbWebView-${account}`,
+                    partition: `persist:${account.toLowerCase()}`,
+                    src: srcUrl,
+                    preload: `file://${window.__preload.replace(/\/$/, "")}/play-ab.js`
+                  },
+                  `${account}-${reload}`
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-2 bg-black/70 flex-shrink-0", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-white font-sm truncate", children: [
                 account,
                 " #",
                 webviewId
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: handleDelete,
-                  className: "px-1.5 py-0.5 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors flex-shrink-0 ml-1",
-                  "aria-label": `Delete account ${account}`,
-                  children: "Delete"
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: !!account && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "webview",
-          {
-            className: "h-full w-full",
-            ref: webviewRef,
-            nodeintegration: true,
-            disablewebsecurity: true,
-            webpreferences: "contextIsolation=false, spellcheck=false",
-            id: `PlayAbWebView-${account}`,
-            partition: `persist:${account.toLowerCase()}`,
-            src: `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
-            preload: `file://${window.__preload.replace(/\/$/, "")}/play-ab.js`
-          },
-          `${account}-${reload}`
-        ) })
-      ] });
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1 flex-shrink-0 ml-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: handleMaximizeClick,
+                    className: isMaximized ? "px-1.5 py-0.5 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors" : "px-1.5 py-0.5 text-xs bg-gray-500 text-white rounded hover:bg-gray-400 transition-colors",
+                    "aria-label": isMaximized ? `Minimize account ${account}` : `Maximize account ${account}`,
+                    children: isMaximized ? "✕" : "⛶"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: handleDelete,
+                    className: "px-1.5 py-0.5 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors",
+                    "aria-label": `Delete account ${account}`,
+                    children: "✕"
+                  }
+                )
+              ] })
+            ] })
+          ]
+        }
+      );
     });
     class LogsStoreService {
       // Only initialize logs when needed (lazy)
@@ -45296,6 +44885,10 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         handleStartAll
       } = useMain();
       const [showLogsOnAccount, setShowLogs] = reactExports.useState("");
+      const [maximizedBuild, setMaximizedBuild] = reactExports.useState(null);
+      const handleMaximize = reactExports.useCallback((build) => {
+        setMaximizedBuild((prev) => prev === build ? null : build);
+      }, []);
       const tableCols = [
         {
           name: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "cursor-pointer", onClick: handleStartAll, children: "AppBuild" }),
@@ -45402,16 +44995,25 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           }
         ) }),
         showLogsOnAccount && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "middle-wrap overflow-scroll", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FullLogs, { account: showLogsOnAccount, onClose: () => setShowLogs("") }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap w-[800px] p-2 flex gap-2 flex-col bg-gray-600", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "right-wrap flex-1 p-2 flex gap-2 flex-col bg-gray-600 relative", children: [
+          !maximizedBuild && /* @__PURE__ */ jsxRuntimeExports.jsx(MemoryInfo, { selectedBuildCount: Array.from(selectedUserBuilds).length }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-6 gap-2 overflow-auto", children: Array.from(selectedUserBuilds).map((build) => {
             console.log("build-------------------------------------", build);
-            return /* @__PURE__ */ jsxRuntimeExports.jsx(Webview, { account: build, onDelete: handleDeleteUser }, build);
+            return /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Webview,
+              {
+                account: build,
+                onDelete: handleDeleteUser,
+                onMaximize: handleMaximize,
+                isMaximized: maximizedBuild === build
+              },
+              build
+            );
           }) })
         ] })
       ] });
     }
-    const version = "1.0.198";
+    const version = "1.0.194";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
