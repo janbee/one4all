@@ -559,6 +559,9 @@ video {
 .contents {
   display: contents;
 }
+.hidden {
+  display: none;
+}
 .aspect-\[9\/13\] {
   aspect-ratio: 9/13;
 }
