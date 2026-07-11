@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-CsqdFbAr.js"(exports, module) {
+  "assets/index-BC4Ls5MJ.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -42317,6 +42317,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       const [isDone, setIsDone] = reactExports.useState(false);
       const [webviewId, setWebviewId] = reactExports.useState(0);
       const [reload, setReload] = reactExports.useState(0);
+      const [src, setSrc] = reactExports.useState("about:blank");
       const debouncedMethod = reactExports.useMemo(
         () => debounce(
           () => {
@@ -42354,6 +42355,11 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
             const now = Date.now();
             if (now - lastRun < THROTTLE_MS) {
               console.log("dom-ready throttled");
+              return;
+            }
+            const currentUrl = webview.getURL();
+            if (currentUrl === "about:blank" || currentUrl.startsWith("data:")) {
+              console.log(`dom-ready: placeholder URL (${currentUrl}), skipping setup`);
               return;
             }
             lastRun = now;
@@ -42527,8 +42533,46 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           console.warn("Failed to adjust webview zoom:", e);
         }
       }, [isMaximized]);
-      const handleWebviewDestroy = reactExports.useCallback(async (webviewId2) => {
-        await window.api?.webviewDestroy(webviewId2, account);
+      reactExports.useEffect(() => {
+        const webview = webviewRef.current;
+        if (!webview) return;
+        let cancelled = false;
+        const setupProxyThenNavigate = async () => {
+          if (cancelled || !webview) return;
+          let webContentsId = webview.getWebContentsId();
+          if (!webContentsId) {
+            await new Promise((resolve) => {
+              const onAttach = () => resolve();
+              webview.addEventListener("did-attach", onAttach, { once: true });
+              setTimeout(resolve, 5e3);
+            });
+            webContentsId = webview.getWebContentsId();
+          }
+          if (cancelled || !webview || !webContentsId) return;
+          const hasProxy = await window.api?.setProxy(webContentsId, accounts, account);
+          if (cancelled) return;
+          if (hasProxy) {
+            const targetUrl = `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`;
+            $Store.actionStatus$[account].next({
+              Action: "PreNavigation",
+              Status: `Proxy set on webContents ${webContentsId}; navigating to Play Alberta`
+            });
+            setSrc(targetUrl);
+          } else {
+            $Store.actionStatus$[account].next({
+              Action: "PreNavigation",
+              Status: `setProxy failed on webContents ${webContentsId}; will retry`
+            });
+            setReload((prev) => prev + 1);
+          }
+        };
+        setupProxyThenNavigate();
+        return () => {
+          cancelled = true;
+        };
+      }, [reload]);
+      const handleWebviewDestroy = reactExports.useCallback(async (webContentsId) => {
+        await window.api?.webviewDestroy(webContentsId, account);
       }, []);
       const handleReload = reactExports.useCallback(() => {
         $Store.actionStatus$[account].next({
@@ -42587,7 +42631,8 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         handleWebviewDestroy,
         webviewId,
         isDone,
-        isMaximized
+        isMaximized,
+        src
       };
     }
     const Webview = reactExports.memo(function Webview2({
@@ -42596,7 +42641,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
       onMaximize,
       isMaximized = false
     }) {
-      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone } = useWebview(account, isMaximized);
+      const { webviewRef, reload, handleWebviewDestroy, webviewId, isDone, src } = useWebview(account, isMaximized);
       const handleDelete = reactExports.useCallback(async () => {
         if (onDelete) {
           await handleWebviewDestroy(webviewId);
@@ -42615,7 +42660,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
           onDelete(account);
         });
       }
-      const srcUrl = reactExports.useMemo(
+      reactExports.useMemo(
         () => `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
         [account, reload]
       );
@@ -42643,7 +42688,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
                     webpreferences: "contextIsolation=false, spellcheck=false",
                     id: `PlayAbWebView-${account}`,
                     partition: `persist:${account.toLowerCase()}`,
-                    src: srcUrl,
+                    src,
                     preload: `file://${window.__preload?.replace(/\/$/, "")}/play-ab.js`
                   },
                   `${account}-${reload}`
@@ -45029,7 +45074,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.204";
+    const version = "1.0.205";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
