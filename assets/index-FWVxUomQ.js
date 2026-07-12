@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-MxDDfqwE.js"(exports, module) {
+  "assets/index-FWVxUomQ.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -42596,6 +42596,21 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         () => `https://playalberta.ca/sports/live?t=${(/* @__PURE__ */ new Date()).getTime()}&account=${account}`,
         [account, reload]
       );
+      const preloadUrl = reactExports.useMemo(
+        () => `file://${window.__preload?.replace(/\/$/, "")}/play-ab.js`,
+        []
+      );
+      reactExports.useEffect(() => {
+        console.log("[WEBVIEW] preload URL →", preloadUrl, "account=", account);
+        fetch(preloadUrl).then(
+          (r2) => console.log(`[WEBVIEW] preload reachable (${r2.status}) account=`, account)
+        ).catch(
+          (e) => console.warn(
+            `[WEBVIEW] preload UNREACHABLE — likely asar-packed. account=${account}`,
+            { url: preloadUrl, err: String(e) }
+          )
+        );
+      }, [preloadUrl, account]);
       console.log(
         "Webview partition-------------------------------------12312312312",
         `partition=persist:${account}`
@@ -42621,7 +42636,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
                     id: `PlayAbWebView-${account}`,
                     partition: `persist:${account.toLowerCase()}`,
                     src: srcUrl,
-                    preload: `file://${window.__preload?.replace(/\/$/, "")}/play-ab.js`
+                    preload: preloadUrl
                   },
                   `${account}-${reload}`
                 )
@@ -45006,7 +45021,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.209";
+    const version = "1.0.210";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
