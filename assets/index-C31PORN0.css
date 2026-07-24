@@ -556,6 +556,9 @@ video {
 .grid {
   display: grid;
 }
+.\!contents {
+  display: contents !important;
+}
 .contents {
   display: contents;
 }
