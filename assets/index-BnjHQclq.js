@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-B_XqtWOL.js"(exports, module) {
+  "assets/index-BnjHQclq.js"(exports, module) {
     var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
     function getDefaultExportFromCjs(x) {
       return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -36186,11 +36186,11 @@ ${suffix}`;
       const index = Math.floor(clampedHours / max * (colorArr.length - 1));
       return colorArr[index];
     };
-    const JERO = ["jeromeangeles4@yahoo.ca", "Bossjome)4", null, "3691dd8f-f06a-490b-a197-f1c18b0dbcc2", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
-    const ANNIE = ["aarca@shaw.ca", "Jc@ol1984", { "cashoutEmail": "aarca@shaw.ca", "maintainCash": 100, "fixedAmount": 100 }, "31612fa1-edf5-4c03-87c1-7f1db70ef7b1", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
-    const MAKSE = ["maksesguerra@gmail.com", "Gaga123!@#", { "cashoutEmail": "maksesguerra@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "33159f41-8327-45d4-a920-69f014b52080", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
-    const NNAS = ["maksesguerra2021.nnas@gmail.com", "Gaga123!@#", { "cashoutEmail": "makse@wealthsimple.me", "maintainCash": 100, "fixedAmount": 100 }, "876245c7-85da-415c-9326-8a0aa24b7937", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
-    const BAJO = ["von7.angeles@gmail.com", "Talpak1!", null, "ccee5a9f-ed5b-46ee-88d4-59a93a9b1caf", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
+    const JERO = ["jeromeangeles4@yahoo.ca", "Bossjome)4", null, "3691dd8f-f06a-490b-a197-f1c18b0dbcc2", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }], { "latitude": 53.5461, "longitude": -113.4938, "accuracy": 50 }];
+    const ANNIE = ["aarca@shaw.ca", "Jc@ol1984", { "cashoutEmail": "aarca@shaw.ca", "maintainCash": 100, "fixedAmount": 100 }, "31612fa1-edf5-4c03-87c1-7f1db70ef7b1", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }], { "latitude": 51.0447, "longitude": -114.0721, "accuracy": 50 }];
+    const MAKSE = ["maksesguerra@gmail.com", "Gaga123!@#", { "cashoutEmail": "maksesguerra@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "33159f41-8327-45d4-a920-69f014b52080", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }], { "latitude": 53.5444, "longitude": -113.4903, "accuracy": 50 }];
+    const NNAS = ["maksesguerra2021.nnas@gmail.com", "Gaga123!@#", { "cashoutEmail": "makse@wealthsimple.me", "maintainCash": 100, "fixedAmount": 100 }, "876245c7-85da-415c-9326-8a0aa24b7937", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }], { "latitude": 50.99, "longitude": -114, "accuracy": 65 }];
+    const BAJO = ["von7.angeles@gmail.com", "Talpak1!", null, "ccee5a9f-ed5b-46ee-88d4-59a93a9b1caf", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-1", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10001, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }], { "latitude": 53.4567, "longitude": -113.55, "accuracy": 55 }];
     const NORMS = ["norm_candelaria@yahoo.com", "Pacita1942!", { "cashoutEmail": "Norm_candelaria@yahoo.com", "maintainCash": 100, "fixedAmount": 100 }, "bad7c4ca-de63-4989-a315-ee9165db94bc", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-2", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10002, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
     const MORIS = ["morris.candelaria.1964@gmail.com", "Gaga123!@#", { "cashoutEmail": "morriscandelaria459@gmail.com", "maintainCash": 100, "fixedAmount": 100 }, "1d87c778-ab69-4b65-975e-f8a0391e1eed", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-2", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10002, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
     const LANNIE = ["lanni.candelaria@yahoo.com", "Admin123!@#", { "cashoutEmail": "janbee@wealthsimple.me", "maintainCash": 100, "fixedAmount": 200 }, "20d146d3-dfcc-4d9e-8520-52ae7afbe5c8", [{ "provider": "webshare", "host": "p.webshare.io", "port": 80, "username": "talpakers-2", "password": "gaga123123" }, { "provider": "decodo", "host": "isp.decodo.com", "port": 10002, "username": "user-sphhn6tfr3-country-ca", "password": "p3oKu2ArmY~2Ywpbt1" }]];
@@ -45119,7 +45119,7 @@ ${s2}` }))), `v2.${this.hasher(s2, this.secretKey)}`.replace(/\+/g, "-").replace
         ] })
       ] });
     }
-    const version = "1.0.221";
+    const version = "1.0.222";
     function App() {
       const [appReady, setAppReady] = reactExports.useState(false);
       reactExports.useEffect(() => {
