@@ -532,9 +532,6 @@ video {
 .z-50 {
   z-index: 50;
 }
-.m-1 {
-  margin: 0.25rem;
-}
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -852,6 +849,9 @@ video {
 }
 .uppercase {
   text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
 }
 .leading-none {
   line-height: 1;
